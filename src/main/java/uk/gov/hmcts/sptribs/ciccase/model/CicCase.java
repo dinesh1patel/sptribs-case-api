@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.AddressGlobalUK;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
+import uk.gov.hmcts.sptribs.caseworker.model.NextState;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerWithCAAAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultAccess;
@@ -20,7 +21,6 @@ import java.util.Set;
 import static uk.gov.hmcts.ccd.sdk.type.FieldType.Email;
 import static uk.gov.hmcts.ccd.sdk.type.FieldType.FixedList;
 import static uk.gov.hmcts.ccd.sdk.type.FieldType.MultiSelectList;
-import static uk.gov.hmcts.ccd.sdk.type.FieldType.TextArea;
 
 @Data
 @AllArgsConstructor
@@ -65,13 +65,6 @@ public class CicCase {
     private YesOrNo isLateTribunalApplicationReasonGiven;
 
     @CCD(
-        label = "Comment",
-        typeOverride = TextArea,
-        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
-    )
-    private String comment;
-
-    @CCD(
         label = "Named Parties",
         typeOverride = MultiSelectList,
         typeParameterOverride = "PartiesCIC",
@@ -85,7 +78,6 @@ public class CicCase {
         typeOverride = MultiSelectList,
         typeParameterOverride = "SubjectCIC",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
-
     )
     private Set<SubjectCIC> subjectCIC;
 
@@ -95,7 +87,6 @@ public class CicCase {
         typeOverride = MultiSelectList,
         typeParameterOverride = "ApplicantCIC",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
-      //  showCondition = "cicCasePartiesCICCONTAINS \"ApplicantCIC\""
     )
     private Set<ApplicantCIC> applicantCIC;
 
@@ -105,7 +96,6 @@ public class CicCase {
         typeOverride = MultiSelectList,
         typeParameterOverride = "RepresentativeCIC",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
-       // showCondition = "cicCasePartiesCICCONTAINS \"RepresentativeCIC\""
     )
     private Set<RepresentativeCIC> representativeCIC;
 
@@ -268,7 +258,7 @@ public class CicCase {
     )
     private YesOrNo isRepresentativeQualified;
 
-    private YesOrNo  representativeDetailsObjects;
+    private YesOrNo representativeDetailsObjects;
 
 
     @CCD(
@@ -307,21 +297,20 @@ public class CicCase {
     )
     private String caseNumber;
 
+
     @CCD(
         label = "Is there a representative?",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
     private YesOrNo isRepresentativePresent;
-
-//    @CCD(
-//        label = "Contact Details Preference",
-//        typeOverride = MultiSelectList,
-//        typeParameterOverride = "PartiesCIC",
-//        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
-//    )
-//    private Set<PartiesCIC> contactDetailsPreference;
     private CaseDocumentsCIC caseDocumentsCIC;
     private YesOrNo selectedCheckBox;
+
+    @CCD(
+        label = "Next State",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private NextState afterStayState;
 
 
 }

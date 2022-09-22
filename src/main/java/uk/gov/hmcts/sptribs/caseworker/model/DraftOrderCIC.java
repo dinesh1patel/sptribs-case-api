@@ -1,6 +1,5 @@
 package uk.gov.hmcts.sptribs.caseworker.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -9,12 +8,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.sptribs.ciccase.model.OrderTemplate;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerWithCAAAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultAccess;
 
-import java.time.LocalDate;
+import static uk.gov.hmcts.ccd.sdk.type.FieldType.FixedList;
 
-import static uk.gov.hmcts.ccd.sdk.type.FieldType.TextArea;
 
 @Data
 @NoArgsConstructor
@@ -22,29 +21,15 @@ import static uk.gov.hmcts.ccd.sdk.type.FieldType.TextArea;
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CaseStay {
+public class DraftOrderCIC {
 
     @CCD(
-        label = "Why is a stay being added to this case?",
-        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
+        typeOverride = FixedList,
+        typeParameterOverride = "OrderTemplate"
     )
-    private StayReason stayReason;
-
-    @CCD(
-        label = "Provide additional details",
-        typeOverride = TextArea
-    )
-    private String additionalDetail;
-
-    @CCD(
-        label = "Expiration Date"
-    )
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate expirationDate;
+    private OrderTemplate orderTemplate;
 
 
-    @CCD(
-        label = " Enter a flag type "
-    )
-    private String flagType;
+
 }
