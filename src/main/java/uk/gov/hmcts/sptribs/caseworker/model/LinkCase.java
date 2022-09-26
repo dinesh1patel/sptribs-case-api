@@ -3,14 +3,21 @@ package uk.gov.hmcts.sptribs.caseworker.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.launcher.ComponentLauncher;
 import uk.gov.hmcts.ccd.sdk.type.CaseLink;
+import uk.gov.hmcts.ccd.sdk.type.ListValue;
+import uk.gov.hmcts.ccd.sdk.type.ScannedDocument;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerWithCAAAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultAccess;
+
+
+import static uk.gov.hmcts.ccd.sdk.type.FieldType.Collection;
 
 @Data
 @NoArgsConstructor
@@ -21,14 +28,15 @@ import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultAccess;
 public class LinkCase {
 
     @CCD(
-        label = "Enter case number",
+        label = "Case Links",
+        typeOverride = Collection,
+        typeParameterOverride = "CaseLink",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
-    private CaseLink caseNumber;
+    private List<ListValue<CaseLink>> caseLinks;
 
     @CCD(
-        label = "Why should these cases be linked?",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
-    private LinkCaseReason linkCaseReason;
+    private ComponentLauncher componentLauncher;
 }

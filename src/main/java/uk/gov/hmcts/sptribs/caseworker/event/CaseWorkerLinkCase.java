@@ -73,8 +73,7 @@ public class CaseWorkerLinkCase implements CCDConfig<CaseData, State, UserRole> 
         pageBuilder.page("selectCase")
             .pageLabel("Select a case you want to link to this case")
             .complex(CaseData::getLinkCase)
-            .mandatory(LinkCase::getCaseNumber)
-            .mandatoryWithLabel(LinkCase::getLinkCaseReason, "Select all that apply")
+            .mandatory(LinkCase::getCaseLinks)
             .done();
     }
 
