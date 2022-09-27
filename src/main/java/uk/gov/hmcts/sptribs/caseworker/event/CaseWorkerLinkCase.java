@@ -25,7 +25,7 @@ import static uk.gov.hmcts.sptribs.ciccase.model.access.Permissions.CREATE_READ_
 @Component
 @Slf4j
 public class CaseWorkerLinkCase implements CCDConfig<CaseData, State, UserRole> {
-    public static final String CASEWORKER_LINK_CASE = "caseworker-link-case";
+    public static final String CASEWORKER_LINK_CASE = "createCaseLink";
 
     @Override
     public void configure(final ConfigBuilder<CaseData, State, UserRole> configBuilder) {
@@ -41,6 +41,14 @@ public class CaseWorkerLinkCase implements CCDConfig<CaseData, State, UserRole> 
 
         addWarning(pageBuilder);
         addSelectCase(pageBuilder);
+        addComponentLauncher(pageBuilder);
+    }
+
+    private void addComponentLauncher(PageBuilder pageBuilder) {
+        pageBuilder.page("componentLauncher")
+            .complex(CaseData::getLinkCase)
+            .mandatoryWithDisplayContextParameter(LinkCase::getComponentLauncher, null, "#ARGUMENT(CREATE)")
+            .done();
     }
 
     @SneakyThrows

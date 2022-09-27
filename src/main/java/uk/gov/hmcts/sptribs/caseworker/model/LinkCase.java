@@ -9,15 +9,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
-import uk.gov.hmcts.ccd.sdk.launcher.ComponentLauncher;
 import uk.gov.hmcts.ccd.sdk.type.CaseLink;
 import uk.gov.hmcts.ccd.sdk.type.ListValue;
 import uk.gov.hmcts.ccd.sdk.type.ScannedDocument;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerWithCAAAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultAccess;
 
-
 import static uk.gov.hmcts.ccd.sdk.type.FieldType.Collection;
+import static uk.gov.hmcts.ccd.sdk.type.FieldType.ComponentLauncher;
 
 @Data
 @NoArgsConstructor
@@ -28,7 +27,7 @@ import static uk.gov.hmcts.ccd.sdk.type.FieldType.Collection;
 public class LinkCase {
 
     @CCD(
-        label = "Case Links",
+        label = "Collection of Case Links",
         typeOverride = Collection,
         typeParameterOverride = "CaseLink",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
@@ -36,7 +35,9 @@ public class LinkCase {
     private List<ListValue<CaseLink>> caseLinks;
 
     @CCD(
+        label = "Launch the web component screen",
+        typeOverride = ComponentLauncher,
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
-    private ComponentLauncher componentLauncher;
+    private uk.gov.hmcts.ccd.sdk.type.ComponentLauncher componentLauncher;
 }
