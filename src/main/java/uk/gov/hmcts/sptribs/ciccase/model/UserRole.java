@@ -24,9 +24,12 @@ public enum UserRole implements HasRole {
     RESPONDENT_CIC("caseworker-sptribs-cic-respondent", "CRU"),
     CITIZEN_CIC("citizen-sptribs-cic-dss", "C");
 
+
     @JsonValue
     private final String role;
     private final String caseTypePermissions;
+
+
 
     public static UserRole fromString(String value) {
         for (UserRole role : UserRole.values()) {
@@ -36,5 +39,4 @@ public enum UserRole implements HasRole {
         }
         return null;
     }
-
 }

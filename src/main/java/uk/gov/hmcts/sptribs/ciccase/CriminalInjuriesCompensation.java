@@ -23,7 +23,17 @@ public class CriminalInjuriesCompensation implements CCDConfig<CaseData, State, 
 
         configBuilder.caseType(CASE_TYPE, "CIC Case Type", "Handling of the dissolution of marriage");
         configBuilder.jurisdiction(JURISDICTION, "CIC", "Family Divorce: dissolution of marriage");
-
+        configBuilder.caseRoleToAccessProfile(UserRole.CREATOR);
+        configBuilder.caseRoleToAccessProfile(UserRole.SUPER_USER);
+        configBuilder.caseRoleToAccessProfile(UserRole.SOLICITOR);
+        configBuilder.caseRoleToAccessProfile(UserRole.SYSTEMUPDATE);
+        configBuilder.caseRoleToAccessProfile(UserRole.CITIZEN_CIC);
+        configBuilder.caseRoleToAccessProfile(UserRole.COURT_ADMIN_CIC);
+        configBuilder.caseRoleToAccessProfile(UserRole.SUPER_USER_CIC);
+        configBuilder.caseRoleToAccessProfile(UserRole.RESPONDENT_CIC);
+        configBuilder.caseRoleToAccessProfile(UserRole.CASE_OFFICER_CIC);
+        configBuilder.caseRoleToAccessProfile(UserRole.DISTRICT_JUDGE_CIC);
+        configBuilder.caseRoleToAccessProfile(UserRole.DISTRICT_REGISTRAR_CIC);
         // to shutter the service within xui uncomment this line
         // configBuilder.shutterService();
         log.info("Building definition for " + System.getenv().getOrDefault("ENVIRONMENT", ""));

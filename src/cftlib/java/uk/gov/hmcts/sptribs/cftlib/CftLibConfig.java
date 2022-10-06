@@ -15,6 +15,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class CftLibConfig implements CFTLibConfigurer {
@@ -28,12 +29,16 @@ public class CftLibConfig implements CFTLibConfigurer {
 
     @Override
     public void configure(CFTLib lib) throws Exception {
-        for (String p : List.of(
-            "DivCaseWorkerUser@AAT.com",
-            "TEST_CASE_WORKER_USER@mailinator.com",
-            "TEST_SOLICITOR@mailinator.com",
-            "divorce_as_caseworker_admin@mailinator.com")) {
-            lib.createProfile(p, "DIVORCE", "NO_FAULT_DIVORCE", "Submitted");
+        var users = Map.of(
+//            "DivCaseWorkerUser@AAT.com", List.of("caseworker", "caseworker-divorce", "caseworker-divorce-courtadmin_beta"),
+            "TEST_CASE_WORKER_USER@mailinator.com", List.of("caseworker", "caseworker-divorce", "casework-divorce-courtadmin_beta"),
+            "TEST_SOLICITOR@mailinator.com", List.of("caseworker", "caseworker-divorce", "caseworker-divorce-solicitor"),
+            "role.assignment.admin@gmail.com", List.of("caseworker")
+        );
+
+        for(var entry : users.entrySet()){
+            lib.createIdamUser(entry.getKey(), entry.getValue().toArray(new String[0]));
+            lib.createProfile(entry.getKey(), "CIC", "NO_FAULT_DIVORCE", "Submitted");
         }
 
         lib.createRoles(
@@ -50,12 +55,13 @@ public class CftLibConfig implements CFTLibConfigurer {
             "caseworker",
             "payments"
         );
+
         ResourceLoader resourceLoader = new DefaultResourceLoader();
         var json = IOUtils.toString(resourceLoader.getResource("classpath:cftlib-am-role-assignments.json")
             .getInputStream(), Charset.defaultCharset());
         lib.configureRoleAssignments(json);
 
-        // Generate and import CCD definitions
+                // Generate and import CCD definitions
         generateCCDDefinition();
 
         var nfdDefinition = Files.readAllBytes(Path.of("build/ccd-config/" + defName));
