@@ -30,7 +30,7 @@ public class CftLibConfig implements CFTLibConfigurer {
     @Override
     public void configure(CFTLib lib) throws Exception {
         var users = Map.of(
-//            "DivCaseWorkerUser@AAT.com", List.of("caseworker", "caseworker-divorce", "caseworker-divorce-courtadmin_beta"),
+            "DivCaseWorkerUser@AAT.com", List.of("caseworker", "caseworker-divorce", "caseworker-divorce-courtadmin_beta"),
             "TEST_CASE_WORKER_USER@mailinator.com", List.of("caseworker", "caseworker-divorce", "casework-divorce-courtadmin_beta"),
             "TEST_SOLICITOR@mailinator.com", List.of("caseworker", "caseworker-divorce", "caseworker-divorce-solicitor"),
             "role.assignment.admin@gmail.com", List.of("caseworker")
@@ -38,7 +38,7 @@ public class CftLibConfig implements CFTLibConfigurer {
 
         for(var entry : users.entrySet()){
             lib.createIdamUser(entry.getKey(), entry.getValue().toArray(new String[0]));
-            lib.createProfile(entry.getKey(), "CIC", "NO_FAULT_DIVORCE", "Submitted");
+            lib.createProfile(entry.getKey(), "DIVORCE", "CIC", "Submitted");
         }
 
         lib.createRoles(
