@@ -47,6 +47,7 @@ export = function () {
       this.click('Save and continue');
       this.waitForText('Case Created', 20);
       this.see('Case reference number');
+      return this.grabTextFrom({css: '.markdown'}).toString().split(':\n')[1];
     }
   });
 };
