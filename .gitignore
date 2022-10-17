@@ -34,3 +34,5 @@ ccd-definitions/definitions/development
 ### aat env file ###
 .aat-env
 
+### Functional Testing ###
+/functional-output
