@@ -31,4 +31,12 @@ public class CriminalInjuriesCompensationTest {
 
     }
 
+    @Test
+    void shouldCreateAccessProfileForUserRoles(){
+
+        final ConfigBuilderImpl<CaseData, State, UserRole> configBuilder = createCaseDataConfigBuilder();
+        criminalInjuriesCompensation.configure(configBuilder);
+        configBuilder.caseRoleToAccessProfile(UserRole.CREATOR).accessProfiles(UserRole.CREATOR.getRole());
+        assertThat(configBuilder.build().getCaseRoleToAccessProfiles()).asList().contains(UserRole.CREATOR.getRole());
+    }
 }
