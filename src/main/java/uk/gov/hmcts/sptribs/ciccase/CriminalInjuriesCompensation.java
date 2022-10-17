@@ -9,6 +9,9 @@ import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
 import uk.gov.hmcts.sptribs.ciccase.model.RetiredFields;
 import uk.gov.hmcts.sptribs.ciccase.model.State;
 import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
+import uk.gov.hmcts.sptribs.common.ccd.CcdCaseType;
+import uk.gov.hmcts.sptribs.common.ccd.CcdServiceCode;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,8 +28,9 @@ public class CriminalInjuriesCompensation implements CCDConfig<CaseData, State, 
         configBuilder.addPreEventHook(RetiredFields::migrate);
         configBuilder.setCallbackHost(System.getenv().getOrDefault("CASE_API_URL", "http://localhost:4013"));
 
-        configBuilder.caseType(CASE_TYPE, "CIC Case Type", "Handling of the dissolution of marriage");
-        configBuilder.jurisdiction(JURISDICTION, "CIC", "Family Divorce: dissolution of marriage");
+        configBuilder.caseType(CcdCaseType.CIC.name(), "CIC Case Type", CcdCaseType.CIC.getDescription());
+        configBuilder.jurisdiction(JURISDICTION, "CIC", CcdServiceCode.CIC.getCcdServiceDescription());
+
 
         configBuilder.caseRoleToAccessProfile(UserRole.CREATOR).caseAccessCategories("SPEC").accessProfiles(UserRole.CREATOR.getRole()).authorisation(CREATE_READ_UPDATE);
         configBuilder.caseRoleToAccessProfile(UserRole.CASE_OFFICER_CIC).caseAccessCategories("SPEC").accessProfiles(UserRole.CASE_OFFICER_CIC.getRole()).authorisation(CREATE_READ_UPDATE);

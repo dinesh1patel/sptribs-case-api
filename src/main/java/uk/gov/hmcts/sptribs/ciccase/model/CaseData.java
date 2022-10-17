@@ -13,6 +13,8 @@ import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.ListValue;
 import uk.gov.hmcts.ccd.sdk.type.OrderSummary;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
+import uk.gov.hmcts.sptribs.caseworker.model.CancelHearing;
+import uk.gov.hmcts.sptribs.caseworker.model.CaseBuilt;
 import uk.gov.hmcts.sptribs.caseworker.model.CaseFlag;
 import uk.gov.hmcts.sptribs.caseworker.model.CaseNote;
 import uk.gov.hmcts.sptribs.caseworker.model.CaseStay;
@@ -73,6 +75,13 @@ public class CaseData {
         typeParameterOverride = "ApplicationType"
     )
     private ApplicationType applicationType;
+
+    @CCD(
+        label = "Cancel Hearing",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private CancelHearing cancelHearing;
+
 
     @CCD(
         label = "Flag Location",
@@ -221,6 +230,10 @@ public class CaseData {
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
     private CaseStay caseStay = new CaseStay();
 
+    @JsonUnwrapped
+    @Builder.Default
+    @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
+    private CaseBuilt caseBuilt = new CaseBuilt();
 
     @JsonUnwrapped(prefix = "draft")
     @Builder.Default
@@ -261,6 +274,7 @@ public class CaseData {
     @JsonUnwrapped
     private RetiredFields retiredFields;
 
+
     @CCD(
         label = "Case number",
         access = {CaseworkerAccess.class}
@@ -275,7 +289,7 @@ public class CaseData {
 
     @JsonUnwrapped(prefix = "paperForm")
     @Builder.Default
-    @CCD(access = {CaseworkerAccess.class}) // TODO: Santoshini: check if its ok to change to caseworkeraccess
+    @CCD(access = {CaseworkerAccess.class})
     private PaperFormDetails paperFormDetails = new PaperFormDetails();
 
     @CCD(
