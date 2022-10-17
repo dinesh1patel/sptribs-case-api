@@ -13,6 +13,8 @@ public enum UserRole implements HasRole {
     SYSTEMUPDATE("caseworker-divorce-systemupdate", "CRU"),
     SOLICITOR("caseworker-divorce-solicitor", "CRU"),
     CREATOR("[CREATOR]", "CRU"),
+    HMCTS_STAFF("hmcts-staff", "CRU"),
+    HMCTS_JUDICIARY("hmcts-judiciary", "CRU"),
 
     // CIC User roles
     SUPER_USER_CIC("caseworker-sptribs-superuser", "CRU"),

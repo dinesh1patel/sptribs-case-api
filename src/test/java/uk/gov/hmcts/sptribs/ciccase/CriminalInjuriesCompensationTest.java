@@ -5,9 +5,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.ConfigBuilderImpl;
+import uk.gov.hmcts.ccd.sdk.api.CaseRoleToAccessProfile;
 import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
 import uk.gov.hmcts.sptribs.ciccase.model.State;
 import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.sptribs.testutil.ConfigTestUtil.createCaseDataConfigBuilder;
@@ -32,11 +37,12 @@ public class CriminalInjuriesCompensationTest {
     }
 
     @Test
-    void shouldCreateAccessProfileForUserRoles(){
+    void shouldCreateAccessProfileForUserRoles() {
 
         final ConfigBuilderImpl<CaseData, State, UserRole> configBuilder = createCaseDataConfigBuilder();
         criminalInjuriesCompensation.configure(configBuilder);
         configBuilder.caseRoleToAccessProfile(UserRole.CREATOR).accessProfiles(UserRole.CREATOR.getRole());
-        assertThat(configBuilder.build().getCaseRoleToAccessProfiles()).asList().contains(UserRole.CREATOR.getRole());
+        List confs = configBuilder.build().getCaseRoleToAccessProfiles().stream().findFirst().get().getAccessProfiles();
+        assertThat(confs.stream().iterator().hasNext()).isEqualTo(true);
     }
 }
