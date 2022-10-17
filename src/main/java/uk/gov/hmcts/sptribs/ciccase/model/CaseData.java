@@ -13,17 +13,20 @@ import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.ListValue;
 import uk.gov.hmcts.ccd.sdk.type.OrderSummary;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
+import uk.gov.hmcts.sptribs.caseworker.model.CancelHearing;
+import uk.gov.hmcts.sptribs.caseworker.model.CaseBuilt;
 import uk.gov.hmcts.sptribs.caseworker.model.CaseFlag;
 import uk.gov.hmcts.sptribs.caseworker.model.CaseNote;
 import uk.gov.hmcts.sptribs.caseworker.model.CaseStay;
 import uk.gov.hmcts.sptribs.caseworker.model.DraftOrderCIC;
+import uk.gov.hmcts.sptribs.caseworker.model.FlagLevel;
 import uk.gov.hmcts.sptribs.caseworker.model.LinkCase;
+import uk.gov.hmcts.sptribs.caseworker.model.RecordListing;
 import uk.gov.hmcts.sptribs.caseworker.model.RemoveCaseStay;
 import uk.gov.hmcts.sptribs.ciccase.model.access.Applicant2Access;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerAccessOnlyAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerAndSuperUserAccess;
-import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerBulkScanAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerWithCAAAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultAccess;
 import uk.gov.hmcts.sptribs.ciccase.model.access.SolicitorAndSystemUpdateAccess;
@@ -72,6 +75,19 @@ public class CaseData {
         typeParameterOverride = "ApplicationType"
     )
     private ApplicationType applicationType;
+
+    @CCD(
+        label = "Cancel Hearing",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private CancelHearing cancelHearing;
+
+
+    @CCD(
+        label = "Flag Location",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private FlagLevel flagLevel;
 
     @CCD(
         label = "Case Status",
@@ -214,6 +230,10 @@ public class CaseData {
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
     private CaseStay caseStay = new CaseStay();
 
+    @JsonUnwrapped
+    @Builder.Default
+    @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
+    private CaseBuilt caseBuilt = new CaseBuilt();
 
     @JsonUnwrapped(prefix = "draft")
     @Builder.Default
@@ -228,10 +248,14 @@ public class CaseData {
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
     private LinkCase linkCase = new LinkCase();
 
-    @JsonUnwrapped(prefix = "flag")
+    @JsonUnwrapped(prefix = "record")
     @Builder.Default
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
-    private CaseFlag caseFlag = new CaseFlag();
+    private RecordListing recordListing = new RecordListing();
+
+    @JsonUnwrapped(prefix = "caseFlag")
+    @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
+    private CaseFlag caseFlag;
 
     @JsonUnwrapped(prefix = "removeStay")
     @Builder.Default
@@ -245,12 +269,6 @@ public class CaseData {
         access = {CaseworkerAndSuperUserAccess.class}
     )
     private String note;
-
-    @CCD(
-        label = "Bulk list case reference",
-        access = {CaseworkerAccess.class}
-    )
-    private String bulkListCaseReference;
 
     @CCD(access = {DefaultAccess.class})
     @JsonUnwrapped
@@ -270,7 +288,7 @@ public class CaseData {
 
     @JsonUnwrapped(prefix = "paperForm")
     @Builder.Default
-    @CCD(access = {CaseworkerBulkScanAccess.class})
+    @CCD(access = {CaseworkerAccess.class})
     private PaperFormDetails paperFormDetails = new PaperFormDetails();
 
     @CCD(
@@ -288,10 +306,6 @@ public class CaseData {
 
     @CCD(typeOverride = CasePaymentHistoryViewer)
     private String paymentHistoryField;
-
-    @JsonUnwrapped
-    @Builder.Default
-    private BulkScanMetaInfo bulkScanMetaInfo = new BulkScanMetaInfo();
 
     @CCD(
         label = "General letters",

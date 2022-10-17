@@ -7,18 +7,8 @@ import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
 import uk.gov.hmcts.sptribs.ciccase.model.State;
 import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
 
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AosDrafted;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AosOverdue;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AwaitingAos;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AwaitingDocuments;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AwaitingHWFDecision;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AwaitingPayment;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AwaitingService;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.Draft;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.Submitted;
 import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.COURT_ADMIN_CIC;
 import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.SUPER_USER;
-import static uk.gov.hmcts.sptribs.ciccase.tab.TabShowCondition.notShowForState;
 
 @Component
 public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
@@ -38,7 +28,7 @@ public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
     @Override
     public void configure(final ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         buildSummaryTab(configBuilder);
-        buildWarningsTab(configBuilder);
+        buildFlagsTab(configBuilder);
         buildStateTab(configBuilder);
         buildAosTab(configBuilder);
         buildPaymentTab(configBuilder);
@@ -68,12 +58,6 @@ public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
             .field("cicCaseRepresentativeReference");
     }
 
-    private void buildWarningsTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
-        configBuilder.tab("transformationAndOcrWarningsTab", "Warnings")
-            .showCondition("warnings!=\"\"")
-            .field("warnings");
-    }
-
     private void buildStateTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         configBuilder.tab("state", "State")
             //.forRoles(APPLICANT_2_SOLICITOR)
@@ -84,10 +68,7 @@ public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
     private void buildAosTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         configBuilder.tab("aosDetails", "AoS")
             .forRoles(COURT_ADMIN_CIC, SUPER_USER)
-            .showCondition("applicationType=\"soleApplication\" AND "
-                + notShowForState(
-                Draft, AwaitingHWFDecision, AwaitingPayment, Submitted, AwaitingDocuments,
-                AwaitingAos, AosDrafted, AosOverdue, AwaitingService))
+            .showCondition("applicationType=\"soleApplication\"")
             .field("applicant2Offline", "applicationType=\"NEVER_SHOW\"")
             .label("LabelAosTabOnlineResponse-Heading", "applicant2Offline=\"No\"", "## This is an online AoS response")
             .label("LabelAosTabOfflineResponse-Heading", "applicant2Offline=\"Yes\"", "## This is an offline AoS response")
@@ -162,6 +143,15 @@ public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
             .field(CaseData::getNotes);
     }
 
+    private void buildFlagsTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
+        configBuilder.tab("flags", "Flags")
+            .forRoles(COURT_ADMIN_CIC, SUPER_USER)
+            .label("partyLevel", "caseFlagPartyLevelFlags!=\"\"", "Party level flags")
+            .field("caseFlagPartyLevelFlags")
+            .label("caseLevel", "caseFlagCaseLevelFlags!=\"\"", "Case level flags")
+            .field("caseFlagCaseLevelFlags");
+    }
+
     private void buildCaseDetailsTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         configBuilder.tab("caseDetails", "Case Details")
             .forRoles(COURT_ADMIN_CIC, SUPER_USER)
@@ -199,7 +189,7 @@ public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
     private void buildCasePartiesTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         configBuilder.tab("caseParties", "Case Parties")
             .forRoles(COURT_ADMIN_CIC, SUPER_USER)
-            .label("Subject's details",null,"### Subject's details")
+            .label("Subject's details", null, "### Subject's details")
             .field("cicCaseFullName")
             .field("cicCaseEmail")
             .field("cicCasePhoneNumber")
