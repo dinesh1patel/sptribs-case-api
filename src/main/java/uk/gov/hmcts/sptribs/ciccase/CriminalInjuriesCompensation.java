@@ -43,7 +43,7 @@ public class CriminalInjuriesCompensation implements CCDConfig<CaseData, State, 
         configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_JUDICIARY).caseAccessCategories("SPEC").accessProfiles("caseworker_profile").authorisation(CREATE_READ_UPDATE);
         configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_STAFF).caseAccessCategories("SPEC").accessProfiles("caseworker_profile").authorisation(CREATE_READ_UPDATE);
         // to shutter the service within xui uncomment this line
-        // configBuilder.shutterService();
+        // configBuilder.shutterService();a
         log.info("Building definition for " + System.getenv().getOrDefault("ENVIRONMENT", ""));
     }
 }
