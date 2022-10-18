@@ -52,6 +52,8 @@ public class CftLibConfig implements CFTLibConfigurer {
             "caseworker-sptribs-cic-districtregistrar",
             "caseworker-sptribs-cic-districtjudge",
             "caseworker-sptribs-cic-respondent",
+            "hmcts-judiciary",
+            "hmcts-staff",
             "caseworker",
             "payments"
         );

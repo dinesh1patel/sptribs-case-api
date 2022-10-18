@@ -44,8 +44,8 @@ public class CriminalInjuriesCompensation implements CCDConfig<CaseData, State, 
         configBuilder.caseRoleToAccessProfile(UserRole.RESPONDENT_CIC).caseAccessCategories("UNSPEC").accessProfiles(UserRole.RESPONDENT_CIC.getRole()).authorisation(CREATE_READ_UPDATE);
         configBuilder.caseRoleToAccessProfile(UserRole.CITIZEN_CIC).caseAccessCategories("UNSPEC").accessProfiles(UserRole.CITIZEN_CIC.getRole()).authorisation("C");
         //for case linking
-        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_JUDICIARY).caseAccessCategories("SPEC").accessProfiles("caseworker_profile").authorisation(CREATE_READ_UPDATE);
-        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_STAFF).caseAccessCategories("SPEC").accessProfiles("caseworker_profile").authorisation(CREATE_READ_UPDATE);
+        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_JUDICIARY).caseAccessCategories("SPEC").accessProfiles(UserRole.HMCTS_JUDICIARY.getRole()).authorisation(CREATE_READ_UPDATE);
+        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_STAFF).caseAccessCategories("SPEC").accessProfiles(UserRole.HMCTS_STAFF.getRole()).authorisation(CREATE_READ_UPDATE);
         // to shutter the service within xui uncomment this line
         // configBuilder.shutterService();a
         log.info("Building definition for " + System.getenv().getOrDefault("ENVIRONMENT", ""));
