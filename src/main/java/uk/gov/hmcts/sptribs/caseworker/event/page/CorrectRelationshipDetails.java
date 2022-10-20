@@ -2,10 +2,10 @@ package uk.gov.hmcts.sptribs.caseworker.event.page;
 
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
 import uk.gov.hmcts.ccd.sdk.api.callback.AboutToStartOrSubmitResponse;
-import uk.gov.hmcts.sptribs.ciccase.model.Application;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.LabelContent;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
+import uk.gov.hmcts.sptribs.cases.model.Application;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.LabelContent;
+import uk.gov.hmcts.sptribs.cases.model.State;
 import uk.gov.hmcts.sptribs.common.ccd.CcdPageConfiguration;
 import uk.gov.hmcts.sptribs.common.ccd.PageBuilder;
 

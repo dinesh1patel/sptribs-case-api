@@ -7,9 +7,9 @@ import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.HasRole;
 import uk.gov.hmcts.ccd.sdk.api.Search;
 import uk.gov.hmcts.ccd.sdk.api.Search.SearchBuilder;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
-import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
+import uk.gov.hmcts.sptribs.cases.model.UserRole;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;

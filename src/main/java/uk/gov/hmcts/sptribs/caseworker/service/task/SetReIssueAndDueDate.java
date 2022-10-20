@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
-import uk.gov.hmcts.sptribs.ciccase.task.CaseTask;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
+import uk.gov.hmcts.sptribs.cases.task.CaseTask;
 
 import java.time.Clock;
 

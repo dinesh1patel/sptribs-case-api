@@ -1,7 +1,7 @@
 package uk.gov.hmcts.sptribs.caseworker.event.page;
 
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.CicCase;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CicCase;
 import uk.gov.hmcts.sptribs.common.ccd.CcdPageConfiguration;
 import uk.gov.hmcts.sptribs.common.ccd.PageBuilder;
 

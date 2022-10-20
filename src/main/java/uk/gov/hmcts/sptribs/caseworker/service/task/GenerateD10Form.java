@@ -14,9 +14,9 @@ import uk.gov.hmcts.reform.document.DocumentUploadClientApi;
 import uk.gov.hmcts.reform.document.domain.Document;
 import uk.gov.hmcts.reform.document.domain.UploadResponse;
 import uk.gov.hmcts.reform.document.utils.InMemoryMultipartFile;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
-import uk.gov.hmcts.sptribs.ciccase.task.CaseTask;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
+import uk.gov.hmcts.sptribs.cases.task.CaseTask;
 import uk.gov.hmcts.sptribs.document.model.DivorceDocument;
 import uk.gov.hmcts.sptribs.idam.IdamService;
 

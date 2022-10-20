@@ -5,16 +5,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
 
 import java.time.Clock;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
-import static uk.gov.hmcts.sptribs.ciccase.model.ApplicationType.SOLE_APPLICATION;
-import static uk.gov.hmcts.sptribs.ciccase.model.DivorceOrDissolution.DIVORCE;
+import static uk.gov.hmcts.sptribs.cases.model.ApplicationType.SOLE_APPLICATION;
+import static uk.gov.hmcts.sptribs.cases.model.DivorceOrDissolution.DIVORCE;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_1_FIRST_NAME;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_1_FULL_NAME;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_1_LAST_NAME;

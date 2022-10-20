@@ -4,14 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
 import uk.gov.hmcts.sptribs.document.task.DivorceApplicationRemover;
 import uk.gov.hmcts.sptribs.solicitor.service.task.DivorceApplicationDraft;
 import uk.gov.hmcts.sptribs.solicitor.service.task.SetApplicant1SolicitorAddress;
 import uk.gov.hmcts.sptribs.solicitor.service.task.SetApplicantGender;
 
-import static uk.gov.hmcts.sptribs.ciccase.task.CaseTaskRunner.caseTasks;
+import static uk.gov.hmcts.sptribs.cases.task.CaseTaskRunner.caseTasks;
 
 @Service
 @Slf4j

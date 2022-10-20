@@ -6,7 +6,7 @@ import uk.gov.hmcts.befta.dse.ccd.CcdEnvironment;
 import uk.gov.hmcts.befta.dse.ccd.CcdRoleConfig;
 import uk.gov.hmcts.befta.dse.ccd.DataLoaderToDefinitionStore;
 import uk.gov.hmcts.befta.util.BeftaUtils;
-import uk.gov.hmcts.sptribs.ciccase.CriminalInjuriesCompensation;
+import uk.gov.hmcts.sptribs.cases.CriminalInjuriesCompensation;
 
 import java.util.List;
 import java.util.Locale;

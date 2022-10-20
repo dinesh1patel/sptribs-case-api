@@ -2,19 +2,19 @@ package uk.gov.hmcts.sptribs.caseworker.event.page;
 
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
 import uk.gov.hmcts.ccd.sdk.api.callback.AboutToStartOrSubmitResponse;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.ApplicantPrayer;
-import uk.gov.hmcts.sptribs.ciccase.model.Application;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseDocuments;
-import uk.gov.hmcts.sptribs.ciccase.model.HelpWithFees;
-import uk.gov.hmcts.sptribs.ciccase.model.Jurisdiction;
-import uk.gov.hmcts.sptribs.ciccase.model.LabelContent;
-import uk.gov.hmcts.sptribs.ciccase.model.MarriageDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.PaperFormDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.Solicitor;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
-import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.ApplicantPrayer;
+import uk.gov.hmcts.sptribs.cases.model.Application;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CaseDocuments;
+import uk.gov.hmcts.sptribs.cases.model.HelpWithFees;
+import uk.gov.hmcts.sptribs.cases.model.Jurisdiction;
+import uk.gov.hmcts.sptribs.cases.model.LabelContent;
+import uk.gov.hmcts.sptribs.cases.model.MarriageDetails;
+import uk.gov.hmcts.sptribs.cases.model.PaperFormDetails;
+import uk.gov.hmcts.sptribs.cases.model.Solicitor;
+import uk.gov.hmcts.sptribs.cases.model.State;
+import uk.gov.hmcts.sptribs.cases.model.UserRole;
 import uk.gov.hmcts.sptribs.common.ccd.CcdPageConfiguration;
 import uk.gov.hmcts.sptribs.common.ccd.PageBuilder;
 
@@ -23,7 +23,7 @@ import java.util.List;
 
 import static uk.gov.hmcts.ccd.sdk.api.Event.EventBuilder;
 import static uk.gov.hmcts.ccd.sdk.api.FieldCollection.FieldCollectionBuilder;
-import static uk.gov.hmcts.sptribs.ciccase.validation.ValidationUtil.SOT_REQUIRED;
+import static uk.gov.hmcts.sptribs.cases.validation.ValidationUtil.SOT_REQUIRED;
 
 public class CorrectPaperCase implements CcdPageConfiguration {
 

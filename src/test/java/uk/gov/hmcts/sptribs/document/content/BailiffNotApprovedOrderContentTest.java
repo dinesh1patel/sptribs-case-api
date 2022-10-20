@@ -7,11 +7,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
-import uk.gov.hmcts.sptribs.ciccase.model.AlternativeService;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.ApplicationType;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.AlternativeService;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.ApplicationType;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.notification.CommonContent;
 
 import java.time.Clock;
@@ -20,8 +20,8 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
-import static uk.gov.hmcts.sptribs.ciccase.model.DivorceOrDissolution.DISSOLUTION;
-import static uk.gov.hmcts.sptribs.ciccase.model.DivorceOrDissolution.DIVORCE;
+import static uk.gov.hmcts.sptribs.cases.model.DivorceOrDissolution.DISSOLUTION;
+import static uk.gov.hmcts.sptribs.cases.model.DivorceOrDissolution.DIVORCE;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICATION_TO_END_THE_CIVIL_PARTNERSHIP;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.CCD_CASE_REFERENCE;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.DATE;

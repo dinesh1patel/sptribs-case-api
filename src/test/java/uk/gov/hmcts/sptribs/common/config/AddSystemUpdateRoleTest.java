@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
+import uk.gov.hmcts.sptribs.cases.model.UserRole;
 import uk.gov.hmcts.sptribs.common.AddSystemUpdateRole;
 
 import java.util.List;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.withEnvironmentVariable;
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.CITIZEN_CIC;
-import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.SYSTEMUPDATE;
+import static uk.gov.hmcts.sptribs.cases.model.UserRole.CITIZEN_CIC;
+import static uk.gov.hmcts.sptribs.cases.model.UserRole.SYSTEMUPDATE;
 
 @ExtendWith(MockitoExtension.class)
 public class AddSystemUpdateRoleTest {

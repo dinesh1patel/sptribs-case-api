@@ -2,7 +2,7 @@ package uk.gov.hmcts.sptribs.document.content;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.common.config.DocmosisTemplatesConfig;
 
 @Component

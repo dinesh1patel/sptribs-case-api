@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.api.HasLabel;
-import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultStateAccessExcludingCAA;
+import uk.gov.hmcts.sptribs.cases.model.access.DefaultStateAccessExcludingCAA;
 
 @RequiredArgsConstructor
 @Getter

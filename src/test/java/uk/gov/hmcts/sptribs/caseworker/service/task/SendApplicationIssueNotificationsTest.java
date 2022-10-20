@@ -7,15 +7,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
 import uk.gov.hmcts.ccd.sdk.type.AddressGlobalUK;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseInvite;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CaseInvite;
+import uk.gov.hmcts.sptribs.cases.model.State;
 import uk.gov.hmcts.sptribs.common.notification.ApplicationIssuedNotification;
 import uk.gov.hmcts.sptribs.notification.NotificationDispatcher;
 
 import static org.mockito.Mockito.verify;
-import static uk.gov.hmcts.sptribs.ciccase.model.ApplicationType.SOLE_APPLICATION;
-import static uk.gov.hmcts.sptribs.ciccase.model.ServiceMethod.PERSONAL_SERVICE;
+import static uk.gov.hmcts.sptribs.cases.model.ApplicationType.SOLE_APPLICATION;
+import static uk.gov.hmcts.sptribs.cases.model.ServiceMethod.PERSONAL_SERVICE;
 import static uk.gov.hmcts.sptribs.testutil.TestDataHelper.caseData;
 
 @ExtendWith(MockitoExtension.class)

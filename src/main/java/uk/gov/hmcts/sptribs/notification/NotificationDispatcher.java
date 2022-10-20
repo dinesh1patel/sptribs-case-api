@@ -1,7 +1,7 @@
 package uk.gov.hmcts.sptribs.notification;
 
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 

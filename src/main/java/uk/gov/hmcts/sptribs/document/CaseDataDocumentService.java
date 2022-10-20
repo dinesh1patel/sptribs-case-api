@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.ccd.sdk.type.Document;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.document.model.ConfidentialDocumentsReceived;
 import uk.gov.hmcts.sptribs.document.model.DocumentInfo;
 import uk.gov.hmcts.sptribs.document.model.DocumentType;
@@ -13,7 +13,7 @@ import uk.gov.hmcts.sptribs.idam.IdamService;
 
 import java.util.Map;
 
-import static uk.gov.hmcts.sptribs.ciccase.model.CaseDocuments.addDocumentToTop;
+import static uk.gov.hmcts.sptribs.cases.model.CaseDocuments.addDocumentToTop;
 import static uk.gov.hmcts.sptribs.document.DocumentUtil.divorceDocumentFrom;
 import static uk.gov.hmcts.sptribs.document.DocumentUtil.documentFrom;
 import static uk.gov.hmcts.sptribs.document.DocumentUtil.isApplicableForConfidentiality;

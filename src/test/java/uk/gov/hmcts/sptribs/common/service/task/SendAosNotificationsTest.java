@@ -6,17 +6,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.AcknowledgementOfService;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
+import uk.gov.hmcts.sptribs.cases.model.AcknowledgementOfService;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
 import uk.gov.hmcts.sptribs.common.notification.SoleApplicationDisputedNotification;
 import uk.gov.hmcts.sptribs.common.notification.SoleApplicationNotDisputedNotification;
 import uk.gov.hmcts.sptribs.notification.NotificationDispatcher;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static uk.gov.hmcts.sptribs.ciccase.model.HowToRespondApplication.DISPUTE_DIVORCE;
-import static uk.gov.hmcts.sptribs.ciccase.model.HowToRespondApplication.WITHOUT_DISPUTE_DIVORCE;
+import static uk.gov.hmcts.sptribs.cases.model.HowToRespondApplication.DISPUTE_DIVORCE;
+import static uk.gov.hmcts.sptribs.cases.model.HowToRespondApplication.WITHOUT_DISPUTE_DIVORCE;
 
 @ExtendWith(MockitoExtension.class)
 class SendAosNotificationsTest {

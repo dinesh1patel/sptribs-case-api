@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import uk.gov.hmcts.ccd.sdk.type.ListValue;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseDocuments;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CaseDocuments;
 import uk.gov.hmcts.sptribs.document.model.ConfidentialDivorceDocument;
 import uk.gov.hmcts.sptribs.document.model.ConfidentialDocumentsReceived;
 import uk.gov.hmcts.sptribs.document.model.DivorceDocument;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Stream.ofNullable;
-import static uk.gov.hmcts.sptribs.ciccase.model.CaseDocuments.addDocumentToTop;
+import static uk.gov.hmcts.sptribs.cases.model.CaseDocuments.addDocumentToTop;
 import static uk.gov.hmcts.sptribs.document.DocumentUtil.isApplicableForConfidentiality;
 
 @Service

@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
 import uk.gov.hmcts.sptribs.notification.ApplicantNotification;
 import uk.gov.hmcts.sptribs.notification.CommonContent;
 import uk.gov.hmcts.sptribs.notification.NotificationService;

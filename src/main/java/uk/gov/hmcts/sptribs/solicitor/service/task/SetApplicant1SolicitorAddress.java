@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
-import uk.gov.hmcts.sptribs.ciccase.task.CaseTask;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
+import uk.gov.hmcts.sptribs.cases.task.CaseTask;
 import uk.gov.hmcts.sptribs.solicitor.client.organisation.OrganisationClient;
 import uk.gov.hmcts.sptribs.solicitor.client.organisation.OrganisationContactInformation;
 
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.gov.hmcts.sptribs.ciccase.util.SolicitorAddressPopulator.populateSolicitorAddress;
+import static uk.gov.hmcts.sptribs.cases.util.SolicitorAddressPopulator.populateSolicitorAddress;
 
 @Component
 @Slf4j

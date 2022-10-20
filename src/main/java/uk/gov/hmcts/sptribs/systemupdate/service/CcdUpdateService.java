@@ -10,15 +10,15 @@ import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.idam.client.models.User;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
-import uk.gov.hmcts.sptribs.ciccase.task.CaseTask;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
+import uk.gov.hmcts.sptribs.cases.task.CaseTask;
 import uk.gov.hmcts.sptribs.systemupdate.convert.CaseDetailsConverter;
 
 import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.CONFLICT;
-import static uk.gov.hmcts.sptribs.ciccase.CriminalInjuriesCompensation.CASE_TYPE;
-import static uk.gov.hmcts.sptribs.ciccase.CriminalInjuriesCompensation.JURISDICTION;
+import static uk.gov.hmcts.sptribs.cases.CriminalInjuriesCompensation.CASE_TYPE;
+import static uk.gov.hmcts.sptribs.cases.CriminalInjuriesCompensation.JURISDICTION;
 
 @Service
 @Slf4j

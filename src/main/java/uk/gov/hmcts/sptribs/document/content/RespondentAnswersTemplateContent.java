@@ -3,13 +3,13 @@ package uk.gov.hmcts.sptribs.document.content;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference.WELSH;
+import static uk.gov.hmcts.sptribs.cases.model.LanguagePreference.WELSH;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_1_FULL_NAME;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_2_FULL_NAME;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.A_DIVORCE_APPLICATION;

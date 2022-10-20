@@ -24,8 +24,8 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-import static uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference.ENGLISH;
-import static uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference.WELSH;
+import static uk.gov.hmcts.sptribs.cases.model.LanguagePreference.ENGLISH;
+import static uk.gov.hmcts.sptribs.cases.model.LanguagePreference.WELSH;
 import static uk.gov.hmcts.sptribs.notification.EmailTemplateName.SAVE_SIGN_OUT;
 
 @ExtendWith(MockitoExtension.class)

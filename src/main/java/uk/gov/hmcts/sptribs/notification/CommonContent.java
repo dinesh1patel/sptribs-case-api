@@ -2,9 +2,9 @@ package uk.gov.hmcts.sptribs.notification;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.common.config.EmailTemplatesConfig;
 
 import java.util.HashMap;
@@ -12,9 +12,9 @@ import java.util.Map;
 
 import static java.lang.String.join;
 import static java.util.Objects.isNull;
-import static uk.gov.hmcts.sptribs.ciccase.model.Gender.FEMALE;
-import static uk.gov.hmcts.sptribs.ciccase.model.Gender.MALE;
-import static uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference.WELSH;
+import static uk.gov.hmcts.sptribs.cases.model.Gender.FEMALE;
+import static uk.gov.hmcts.sptribs.cases.model.Gender.MALE;
+import static uk.gov.hmcts.sptribs.cases.model.LanguagePreference.WELSH;
 import static uk.gov.hmcts.sptribs.notification.FormatUtil.formatId;
 
 @Component

@@ -6,15 +6,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
 import uk.gov.hmcts.sptribs.common.service.HoldingPeriodService;
 
 import java.time.Clock;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.sptribs.ciccase.model.State.AwaitingConditionalOrder;
+import static uk.gov.hmcts.sptribs.cases.model.State.AwaitingConditionalOrder;
 import static uk.gov.hmcts.sptribs.testutil.ClockTestUtil.getExpectedLocalDate;
 import static uk.gov.hmcts.sptribs.testutil.ClockTestUtil.getExpectedLocalDateTime;
 import static uk.gov.hmcts.sptribs.testutil.ClockTestUtil.setMockClock;

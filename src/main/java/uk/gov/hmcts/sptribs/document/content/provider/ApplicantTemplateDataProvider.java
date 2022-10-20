@@ -2,17 +2,17 @@ package uk.gov.hmcts.sptribs.document.content.provider;
 
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.FinancialOrderFor;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.FinancialOrderFor;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 
 import java.util.Map;
 import java.util.Set;
 
 import static org.apache.commons.lang3.ObjectUtils.isEmpty;
-import static uk.gov.hmcts.sptribs.ciccase.model.FinancialOrderFor.APPLICANT;
-import static uk.gov.hmcts.sptribs.ciccase.model.FinancialOrderFor.CHILDREN;
-import static uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference.WELSH;
+import static uk.gov.hmcts.sptribs.cases.model.FinancialOrderFor.APPLICANT;
+import static uk.gov.hmcts.sptribs.cases.model.FinancialOrderFor.CHILDREN;
+import static uk.gov.hmcts.sptribs.cases.model.LanguagePreference.WELSH;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_1_EMAIL;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_1_POSTAL_ADDRESS;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.APPLICANT_2_EMAIL;

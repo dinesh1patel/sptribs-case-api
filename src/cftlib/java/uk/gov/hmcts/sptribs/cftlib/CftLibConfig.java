@@ -39,12 +39,12 @@ public class CftLibConfig implements CFTLibConfigurer {
             "TEST_SOLICITOR@mailinator.com",
             "divorce_as_caseworker_admin@mailinator.com")) {
             lib.createProfile(p, "DIVORCE", "NO_FAULT_DIVORCE", state);
-            lib.createProfile(p, CcdServiceCode.CIC.getCcdServiceName(), CcdCaseType.CIC.name(), state);
-            lib.createProfile(p, CcdServiceCode.CS.getCcdServiceName(), CcdCaseType.CS.name(), state);
-            lib.createProfile(p, CcdServiceCode.MH.getCcdServiceName(), CcdCaseType.MH.name(), state);
-            lib.createProfile(p, CcdServiceCode.PHL.getCcdServiceName(), CcdCaseType.PHL.name(), state);
-            lib.createProfile(p, CcdServiceCode.SEN.getCcdServiceName(), CcdCaseType.SEN.name(), state);
-            lib.createProfile(p, CcdServiceCode.DD.getCcdServiceName(), CcdCaseType.DD.name(), state);
+            lib.createProfile(p, CcdServiceCode.ST_CIC.getCcdServiceName(), CcdCaseType.CIC.name(), state);
+            lib.createProfile(p, CcdServiceCode.ST_CS.getCcdServiceName(), CcdCaseType.CS.name(), state);
+            lib.createProfile(p, CcdServiceCode.ST_MH.getCcdServiceName(), CcdCaseType.MH.name(), state);
+            lib.createProfile(p, CcdServiceCode.ST_PHL.getCcdServiceName(), CcdCaseType.PHL.name(), state);
+            lib.createProfile(p, CcdServiceCode.ST_SEN.getCcdServiceName(), CcdCaseType.SEN.name(), state);
+            lib.createProfile(p, CcdServiceCode.ST_DD.getCcdServiceName(), CcdCaseType.DD.name(), state);
         }
 
         lib.createRoles(

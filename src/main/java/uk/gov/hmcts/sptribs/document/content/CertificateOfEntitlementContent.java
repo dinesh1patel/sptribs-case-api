@@ -3,10 +3,10 @@ package uk.gov.hmcts.sptribs.document.content;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.ConditionalOrder;
-import uk.gov.hmcts.sptribs.ciccase.model.ConditionalOrderCourt;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.ConditionalOrder;
+import uk.gov.hmcts.sptribs.cases.model.ConditionalOrderCourt;
 import uk.gov.hmcts.sptribs.common.ConditionalOrderCourtDetails;
 import uk.gov.hmcts.sptribs.common.config.ConditionalOrderCourtDetailsConfig;
 

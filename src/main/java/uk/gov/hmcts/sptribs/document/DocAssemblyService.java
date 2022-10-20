@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.document.content.DocmosisTemplateProvider;
 import uk.gov.hmcts.sptribs.document.model.DocAssemblyRequest;
 import uk.gov.hmcts.sptribs.document.model.DocAssemblyResponse;

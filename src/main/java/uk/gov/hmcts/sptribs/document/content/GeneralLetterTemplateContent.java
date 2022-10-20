@@ -4,10 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.CtscContactDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.GeneralLetter;
+import uk.gov.hmcts.sptribs.cases.model.Applicant;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CtscContactDetails;
+import uk.gov.hmcts.sptribs.cases.model.GeneralLetter;
 import uk.gov.hmcts.sptribs.notification.CommonContent;
 
 import java.time.Clock;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import static uk.gov.hmcts.sptribs.ciccase.util.AddressUtil.getPostalAddress;
+import static uk.gov.hmcts.sptribs.cases.util.AddressUtil.getPostalAddress;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.CASE_REFERENCE;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.CIVIL_PARTNER;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.CTSC_CONTACT_DETAILS;

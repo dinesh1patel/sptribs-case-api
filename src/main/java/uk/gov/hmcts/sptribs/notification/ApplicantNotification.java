@@ -1,6 +1,6 @@
 package uk.gov.hmcts.sptribs.notification;
 
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
 
 public interface ApplicantNotification {
 

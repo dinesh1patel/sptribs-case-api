@@ -1,0 +1,65 @@
+package uk.gov.hmcts.sptribs.cases.workbasket;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import uk.gov.hmcts.ccd.sdk.ConfigBuilderImpl;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
+import uk.gov.hmcts.sptribs.cases.model.UserRole;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.tuple;
+import static uk.gov.hmcts.sptribs.testutil.ConfigTestUtil.createCaseDataConfigBuilder;
+import static uk.gov.hmcts.sptribs.testutil.ConfigTestUtil.getWorkBasketResultFields;
+
+class WorkBasketResultFieldsTest {
+
+    private WorkBasketResultFields workBasketResultFields;
+
+    @BeforeEach
+    void setUp() {
+        workBasketResultFields = new WorkBasketResultFields();
+    }
+
+    @Test
+    void shouldSetWorkBasketResultFields() throws Exception {
+        //Given
+        final ConfigBuilderImpl<CaseData, State, UserRole> configBuilder = createCaseDataConfigBuilder();
+
+        //When
+        workBasketResultFields.configure(configBuilder);
+
+        //Then
+        assertThat(getWorkBasketResultFields(configBuilder).getFields())
+            .extracting("id",
+                "label",
+                "listElementCode",
+                "showCondition")
+            .contains(
+                tuple("[CASE_REFERENCE]",
+                    "Case Number",
+                    null,
+                    null),
+                tuple("cicCaseFullName",
+                    "Subject Name",
+                    null,
+                    null),
+                tuple("[STATE]",
+                    "Case Status",
+                    null,
+                    null),
+                tuple("hearingDate",
+                    "Hearing Date",
+                    null,
+                    null),
+                tuple("cicCaseApplicantFullName",
+                    "Applicant Name",
+                    null,
+                    null),
+                tuple("dueDate",
+                    "Due Date",
+                    null,
+                    null)
+            );
+    }
+}

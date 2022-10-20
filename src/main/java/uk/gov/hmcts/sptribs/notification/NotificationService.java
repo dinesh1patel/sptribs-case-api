@@ -4,7 +4,7 @@ package uk.gov.hmcts.sptribs.notification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.common.config.EmailTemplatesConfig;
 import uk.gov.hmcts.sptribs.notification.exception.NotificationException;
 import uk.gov.service.notify.NotificationClient;

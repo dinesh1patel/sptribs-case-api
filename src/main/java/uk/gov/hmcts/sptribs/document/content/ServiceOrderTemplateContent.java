@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.CtscContactDetails;
-import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.CtscContactDetails;
+import uk.gov.hmcts.sptribs.cases.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.notification.CommonContent;
 
 import java.time.LocalDate;
@@ -15,8 +15,8 @@ import java.util.Map;
 
 import static uk.gov.hmcts.ccd.sdk.type.YesOrNo.NO;
 import static uk.gov.hmcts.ccd.sdk.type.YesOrNo.YES;
-import static uk.gov.hmcts.sptribs.ciccase.model.AlternativeServiceType.DEEMED;
-import static uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference.WELSH;
+import static uk.gov.hmcts.sptribs.cases.model.AlternativeServiceType.DEEMED;
+import static uk.gov.hmcts.sptribs.cases.model.LanguagePreference.WELSH;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.CASE_REFERENCE;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.CTSC_CONTACT_DETAILS;
 import static uk.gov.hmcts.sptribs.document.content.DocmosisTemplateConstants.DIVORCE_OR_DISSOLUTION;

@@ -7,13 +7,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
 import uk.gov.hmcts.sptribs.caseworker.service.task.GenerateGeneralLetter;
-import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
-import uk.gov.hmcts.sptribs.ciccase.model.State;
+import uk.gov.hmcts.sptribs.cases.model.CaseData;
+import uk.gov.hmcts.sptribs.cases.model.State;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static uk.gov.hmcts.sptribs.ciccase.model.GeneralParties.APPLICANT;
+import static uk.gov.hmcts.sptribs.cases.model.GeneralParties.APPLICANT;
 import static uk.gov.hmcts.sptribs.testutil.TestDataHelper.buildCaseDataWithGeneralLetter;
 
 @ExtendWith(MockitoExtension.class)
