@@ -27,7 +27,7 @@
     "genSystemEventNameConsts": "grep -rh \"public static final String\" ./src/main/java/uk/gov/hmcts/sptribs/systemupdate/event | sed \"s/    public static final String/export const/\" >> ./build/ts/index.ts",
     "genCourtLabelConsts": "grep -rh \\\"public static final String\\\" ./src/main/java/uk/gov/hmcts/sptribs/ciccase/constant | sed \\\"s/    public static final String/export const/\\\" >> ./build/ts/index.ts",
     "test:crossbrowser:e2e": "NODE_TLS_REJECT_UNAUTHORIZED=0 codeceptjs --config src/test/cross-browser/saucelabs.conf.js run-multiple --all --grep @CrossBrowser",
-    "test:functional:min": "NODE_TLS_REJECT_UNAUTHORIZED=0 codeceptjs --config ./src/test/functional/codecept.conf.js run-workers 1 parallel  --grep \"(?=.*)^(?!.*@Nightly)\"",
+    "test:functional:min": "NODE_TLS_REJECT_UNAUTHORIZED=0 codeceptjs --config ./src/test/functional/codecept.conf.js run-workers 8 parallel  --grep \"(?=.*)^(?!.*@Nightly)\"",
     "test:functional:all": "NODE_TLS_REJECT_UNAUTHORIZED=0 codeceptjs --config ./src/test/functional/codecept.conf.js run-workers 8 parallel"
   }
 }

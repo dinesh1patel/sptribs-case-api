@@ -5,7 +5,7 @@ Before(async ({I}) => {
   I.waitForText('Case list');
 });
 
-Scenario('Create Case',
+Scenario.only('Create Case',
   async ({I}) => {
     let pageHeader;
     do {
@@ -114,7 +114,7 @@ Scenario('Create flag at case level',
   }
 ).tag('@CrossBrowser');
 
-Scenario.only('Create Record Listing',
+Scenario('Create Record Listing',
   async ({I}) => {
     let pageHeader;
     do {

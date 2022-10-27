@@ -42,6 +42,8 @@ public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserR
             .grantHistoryOnly(SOLICITOR));
 
         addHearingTypeAndFormat(pageBuilder);
+        addRemoteHearingInfo(pageBuilder);
+        addOtherInformation(pageBuilder);
     }
 
     @SneakyThrows
@@ -64,13 +66,32 @@ public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserR
             .build();
     }
 
-
     private void addHearingTypeAndFormat(PageBuilder pageBuilder) {
         pageBuilder.page("hearingTypeAndFormat")
             .label("hearingTypeAndFormatObj", "<h1>Hearing type and format</h1>")
             .complex(CaseData::getRecordListing)
             .mandatory(RecordListing::getHearingType)
             .mandatory(RecordListing::getHearingFormat)
+            .done();
+    }
+
+    private void addRemoteHearingInfo(PageBuilder pageBuilder) {
+        pageBuilder.page("remoteHearingInformation")
+            .label("remoteHearingInfoObj", "<h1>Remote hearing information</h1>")
+            .complex(CaseData::getRecordListing)
+            .optional(RecordListing::getVideoCallLink)
+            .optional(RecordListing::getConferenceCallNumber)
+            .done();
+    }
+
+    private void addOtherInformation(PageBuilder pageBuilder) {
+        pageBuilder.page("otherInformation")
+            .label("otherInformationObj", "<h1>Other information</h1>")
+            .complex(CaseData::getRecordListing)
+            .label("otherInfoLabel",
+                "\nEnter any other important information about this hearing. This may include any reasonable adjustments that need to be made, or details" +
+                    "\n of anyone who should be excluded from attending this hearing.\n")
+            .optional(RecordListing::getImportantInfoDetails)
             .done();
     }
 }
