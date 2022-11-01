@@ -18,7 +18,8 @@ export const config: CodeceptJS.MainConfig = {
       browser: 'chromium',
       waitForNavigation: 'networkidle0',
       waitForTimeout: 30000,
-      waitForAction: 200
+      waitForAction: 500,
+      restart: false
     },
     BrowserHelpers: {
       require: './helpers/browser_helper.ts',
@@ -45,7 +46,12 @@ export const config: CodeceptJS.MainConfig = {
       enabled: true,
       fullPageScreenshots: true,
     },
-  },  
+  },
+  multiple: {
+    parallel: {
+      chunks: 2
+    }
+  },
   mocha: {
     bail: true,
     reporterOptions: {
@@ -58,13 +64,13 @@ export const config: CodeceptJS.MainConfig = {
       'mocha-junit-reporter': {
         stdout: '-',
         options: {
-          mochaFile: process.env.REPORT_FILE || 'test-results/functional/result.xml',
+          mochaFile: process.env.REPORT_FILE || 'e2e/test-results/results.xml',
         },
       },
       'mochawesome': {
         stdout: '-',
         options: {
-          reportDir: process.env.REPORT_DIR || 'test-results/functional',
+          reportDir: process.env.REPORT_DIR || 'e2e/test-results',
           inlineAssets: true,
           json: false,
         },

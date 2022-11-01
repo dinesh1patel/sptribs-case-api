@@ -12,7 +12,8 @@
   },
   "scripts": {
     "clean": "rm -rf node_modules/",
-    "test:e2e": "MOCHAWESOME_REPORTFILENAME=e2e REPORT_DIR=e2e/test-results REPORT_FILE=e2e/test-results/results.xml npx codeceptjs run --config e2e/codecept.conf.ts --grep @test --reporter mocha-multi --verbose",
+    "test:e2e": "MOCHAWESOME_REPORTFILENAME=e2e-test-results npx codeceptjs --config e2e/codecept.conf.ts --grep @test --reporter mocha-multi --verbose",
+    "parallel_test:e2e": "MOCHAWESOME_REPORTFILENAME=e2e-test-results npx codeceptjs run-workers 2 parallel --config e2e/codecept.conf.ts --grep @test --reporter mocha-multi --verbose",
     "prepublishOnly": "npm run genCaseTypeConsts && npm run genCitizenEventNameConsts && npm run genCommonEventNameConsts && npm run genSystemEventNameConsts && npm run genCourtLabelConsts",
     "genCaseTypeConsts": "grep -rh \\\"public static final String\\\" ./src/main/java/uk/gov/hmcts/sptribs/ciccase/NoFaultDivorce.java | sed \\\"s/    public static final String/export const/\\\" >> ./build/ts/index.ts",
     "genCitizenEventNameConsts": "grep -rh \"public static final String\" ./src/main/java/uk/gov/hmcts/sptribs/citizen/event | sed \"s/    public static final String/export const/\" >> ./build/ts/index.ts",
