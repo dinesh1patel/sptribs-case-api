@@ -8,19 +8,17 @@ import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.callback.AboutToStartOrSubmitResponse;
 import uk.gov.hmcts.reform.ccd.client.model.SubmittedCallbackResponse;
 import uk.gov.hmcts.sptribs.caseworker.event.page.RemoveStay;
-import uk.gov.hmcts.sptribs.caseworker.model.NextState;
-import uk.gov.hmcts.sptribs.cases.model.CaseData;
-import uk.gov.hmcts.sptribs.cases.model.State;
-import uk.gov.hmcts.sptribs.cases.model.UserRole;
+import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.ciccase.model.State;
+import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
 import uk.gov.hmcts.sptribs.common.ccd.CcdPageConfiguration;
 import uk.gov.hmcts.sptribs.common.ccd.PageBuilder;
 
-import static java.lang.String.format;
-import static uk.gov.hmcts.sptribs.cases.model.State.CaseStayed;
-import static uk.gov.hmcts.sptribs.cases.model.UserRole.COURT_ADMIN_CIC;
-import static uk.gov.hmcts.sptribs.cases.model.UserRole.SOLICITOR;
-import static uk.gov.hmcts.sptribs.cases.model.UserRole.SUPER_USER;
-import static uk.gov.hmcts.sptribs.cases.model.access.Permissions.CREATE_READ_UPDATE_DELETE;
+import static uk.gov.hmcts.sptribs.ciccase.model.State.CaseStayed;
+import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.COURT_ADMIN_CIC;
+import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.SOLICITOR;
+import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.SUPER_USER;
+import static uk.gov.hmcts.sptribs.ciccase.model.access.Permissions.CREATE_READ_UPDATE_DELETE;
 
 @Component
 @Slf4j
@@ -58,9 +56,8 @@ public class CaseworkerRemoveStay implements CCDConfig<CaseData, State, UserRole
 
         var caseData = details.getData();
         caseData.setCaseStay(null);
-        caseData.getCicCase().setAfterStayState(NextState.CaseManagement);
 
-        State newState = State.valueOf(caseData.getCicCase().getAfterStayState().getName());
+        State newState = State.CaseManagement;
         return AboutToStartOrSubmitResponse.<CaseData, State>builder()
             .data(caseData)
             .state(newState)
@@ -72,7 +69,7 @@ public class CaseworkerRemoveStay implements CCDConfig<CaseData, State, UserRole
         var caseData = details.getData();
         caseData.setRemoveCaseStay(null);
         return SubmittedCallbackResponse.builder()
-            .confirmationHeader(format("# Stay Removed from Case"))
+            .confirmationHeader("# Stay Removed from Case")
             .build();
     }
 }

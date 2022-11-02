@@ -1,4 +1,4 @@
-package uk.gov.hmcts.sptribs.cases.model;
+package uk.gov.hmcts.sptribs.ciccase.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -10,16 +10,16 @@ import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.AddressGlobalUK;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
-import uk.gov.hmcts.sptribs.caseworker.model.NextState;
-import uk.gov.hmcts.sptribs.cases.model.access.CaseworkerAccess;
-import uk.gov.hmcts.sptribs.cases.model.access.CaseworkerWithCAAAccess;
-import uk.gov.hmcts.sptribs.cases.model.access.DefaultAccess;
+import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerAccess;
+import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerWithCAAAccess;
+import uk.gov.hmcts.sptribs.ciccase.model.access.DefaultAccess;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 import static uk.gov.hmcts.ccd.sdk.type.FieldType.Email;
 import static uk.gov.hmcts.ccd.sdk.type.FieldType.FixedList;
+import static uk.gov.hmcts.ccd.sdk.type.FieldType.FixedRadioList;
 import static uk.gov.hmcts.ccd.sdk.type.FieldType.MultiSelectList;
 
 @Data
@@ -324,13 +324,25 @@ public class CicCase {
     )
     private YesOrNo isRepresentativePresent;
     private CaseDocumentsCIC caseDocumentsCIC;
+    @CCD(
+        label = "Reinstate Documents",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private CaseDocumentsCIC reinstateDocuments;
     private YesOrNo selectedCheckBox;
 
     @CCD(
-        label = "Next State",
+        label = "Case Status",
+        typeOverride = FixedRadioList,
+        typeParameterOverride = "State",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
-    private NextState afterStayState;
+    private State testState;
 
-
+    @CCD(
+        label = "Minus days from today to set close date ",
+        regex = "^\\d+$",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private String days;
 }

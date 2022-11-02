@@ -23,31 +23,33 @@ import uk.gov.hmcts.ccd.sdk.type.ScannedDocument;
 import uk.gov.hmcts.ccd.sdk.type.ScannedDocumentType;
 import uk.gov.hmcts.reform.ccd.client.model.CallbackRequest;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
-import uk.gov.hmcts.sptribs.cases.model.Applicant;
-import uk.gov.hmcts.sptribs.cases.model.ApplicantPrayer;
-import uk.gov.hmcts.sptribs.cases.model.Application;
-import uk.gov.hmcts.sptribs.cases.model.ApplicationType;
-import uk.gov.hmcts.sptribs.cases.model.CaseData;
-import uk.gov.hmcts.sptribs.cases.model.CaseInvite;
-import uk.gov.hmcts.sptribs.cases.model.ConditionalOrder;
-import uk.gov.hmcts.sptribs.cases.model.ConditionalOrderQuestions;
-import uk.gov.hmcts.sptribs.cases.model.DivorceGeneralOrder;
-import uk.gov.hmcts.sptribs.cases.model.DocumentsServedBeingThe;
-import uk.gov.hmcts.sptribs.cases.model.DocumentsServedHow;
-import uk.gov.hmcts.sptribs.cases.model.DocumentsServedWhere;
-import uk.gov.hmcts.sptribs.cases.model.FinalOrder;
-import uk.gov.hmcts.sptribs.cases.model.Gender;
-import uk.gov.hmcts.sptribs.cases.model.GeneralLetter;
-import uk.gov.hmcts.sptribs.cases.model.GeneralOrder;
-import uk.gov.hmcts.sptribs.cases.model.GeneralOrderDivorceParties;
-import uk.gov.hmcts.sptribs.cases.model.GeneralOrderJudgeOrLegalAdvisorType;
-import uk.gov.hmcts.sptribs.cases.model.GeneralParties;
-import uk.gov.hmcts.sptribs.cases.model.HelpWithFees;
-import uk.gov.hmcts.sptribs.cases.model.Jurisdiction;
-import uk.gov.hmcts.sptribs.cases.model.MarriageDetails;
-import uk.gov.hmcts.sptribs.cases.model.Solicitor;
-import uk.gov.hmcts.sptribs.cases.model.SolicitorService;
-import uk.gov.hmcts.sptribs.cases.model.UserRole;
+import uk.gov.hmcts.reform.idam.client.models.User;
+import uk.gov.hmcts.reform.idam.client.models.UserDetails;
+import uk.gov.hmcts.sptribs.ciccase.model.Applicant;
+import uk.gov.hmcts.sptribs.ciccase.model.ApplicantPrayer;
+import uk.gov.hmcts.sptribs.ciccase.model.Application;
+import uk.gov.hmcts.sptribs.ciccase.model.ApplicationType;
+import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.ciccase.model.CaseInvite;
+import uk.gov.hmcts.sptribs.ciccase.model.ConditionalOrder;
+import uk.gov.hmcts.sptribs.ciccase.model.ConditionalOrderQuestions;
+import uk.gov.hmcts.sptribs.ciccase.model.DivorceGeneralOrder;
+import uk.gov.hmcts.sptribs.ciccase.model.DocumentsServedBeingThe;
+import uk.gov.hmcts.sptribs.ciccase.model.DocumentsServedHow;
+import uk.gov.hmcts.sptribs.ciccase.model.DocumentsServedWhere;
+import uk.gov.hmcts.sptribs.ciccase.model.FinalOrder;
+import uk.gov.hmcts.sptribs.ciccase.model.Gender;
+import uk.gov.hmcts.sptribs.ciccase.model.GeneralLetter;
+import uk.gov.hmcts.sptribs.ciccase.model.GeneralOrder;
+import uk.gov.hmcts.sptribs.ciccase.model.GeneralOrderDivorceParties;
+import uk.gov.hmcts.sptribs.ciccase.model.GeneralOrderJudgeOrLegalAdvisorType;
+import uk.gov.hmcts.sptribs.ciccase.model.GeneralParties;
+import uk.gov.hmcts.sptribs.ciccase.model.HelpWithFees;
+import uk.gov.hmcts.sptribs.ciccase.model.Jurisdiction;
+import uk.gov.hmcts.sptribs.ciccase.model.MarriageDetails;
+import uk.gov.hmcts.sptribs.ciccase.model.Solicitor;
+import uk.gov.hmcts.sptribs.ciccase.model.SolicitorService;
+import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
 import uk.gov.hmcts.sptribs.document.model.ConfidentialDivorceDocument;
 import uk.gov.hmcts.sptribs.document.model.ConfidentialDocumentsReceived;
 import uk.gov.hmcts.sptribs.document.model.DivorceDocument;
@@ -60,7 +62,6 @@ import uk.gov.hmcts.sptribs.notification.CommonContent;
 import uk.gov.hmcts.sptribs.payment.model.FeeResponse;
 import uk.gov.hmcts.sptribs.payment.model.Payment;
 import uk.gov.hmcts.sptribs.payment.model.PaymentStatus;
-import uk.gov.hmcts.sptribs.solicitor.client.organisation.OrganisationContactInformation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -81,18 +82,18 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static uk.gov.hmcts.ccd.sdk.type.ScannedDocumentType.FORM;
 import static uk.gov.hmcts.ccd.sdk.type.YesOrNo.NO;
 import static uk.gov.hmcts.ccd.sdk.type.YesOrNo.YES;
-import static uk.gov.hmcts.sptribs.cases.CriminalInjuriesCompensation.CASE_TYPE;
-import static uk.gov.hmcts.sptribs.cases.model.ApplicantPrayer.DissolveDivorce.DISSOLVE_DIVORCE;
-import static uk.gov.hmcts.sptribs.cases.model.ApplicationType.JOINT_APPLICATION;
-import static uk.gov.hmcts.sptribs.cases.model.ApplicationType.SOLE_APPLICATION;
-import static uk.gov.hmcts.sptribs.cases.model.ConditionalOrderCourt.BURY_ST_EDMUNDS;
-import static uk.gov.hmcts.sptribs.cases.model.ContactDetailsType.PRIVATE;
-import static uk.gov.hmcts.sptribs.cases.model.ContactDetailsType.PUBLIC;
-import static uk.gov.hmcts.sptribs.cases.model.DivorceOrDissolution.DIVORCE;
-import static uk.gov.hmcts.sptribs.cases.model.Gender.FEMALE;
-import static uk.gov.hmcts.sptribs.cases.model.Gender.MALE;
-import static uk.gov.hmcts.sptribs.cases.model.JurisdictionConnections.APP_1_APP_2_RESIDENT;
-import static uk.gov.hmcts.sptribs.cases.model.ServiceMethod.COURT_SERVICE;
+import static uk.gov.hmcts.sptribs.ciccase.CriminalInjuriesCompensation.CASE_TYPE;
+import static uk.gov.hmcts.sptribs.ciccase.model.ApplicantPrayer.DissolveDivorce.DISSOLVE_DIVORCE;
+import static uk.gov.hmcts.sptribs.ciccase.model.ApplicationType.JOINT_APPLICATION;
+import static uk.gov.hmcts.sptribs.ciccase.model.ApplicationType.SOLE_APPLICATION;
+import static uk.gov.hmcts.sptribs.ciccase.model.ConditionalOrderCourt.BURY_ST_EDMUNDS;
+import static uk.gov.hmcts.sptribs.ciccase.model.ContactDetailsType.PRIVATE;
+import static uk.gov.hmcts.sptribs.ciccase.model.ContactDetailsType.PUBLIC;
+import static uk.gov.hmcts.sptribs.ciccase.model.DivorceOrDissolution.DIVORCE;
+import static uk.gov.hmcts.sptribs.ciccase.model.Gender.FEMALE;
+import static uk.gov.hmcts.sptribs.ciccase.model.Gender.MALE;
+import static uk.gov.hmcts.sptribs.ciccase.model.JurisdictionConnections.APP_1_APP_2_RESIDENT;
+import static uk.gov.hmcts.sptribs.ciccase.model.ServiceMethod.COURT_SERVICE;
 import static uk.gov.hmcts.sptribs.document.model.DocumentType.APPLICATION;
 import static uk.gov.hmcts.sptribs.notification.CommonContent.APPLICANT_NAME;
 import static uk.gov.hmcts.sptribs.notification.CommonContent.APPLICATION_REFERENCE;
@@ -117,6 +118,7 @@ import static uk.gov.hmcts.sptribs.testutil.TestConstants.ISSUE_FEE;
 import static uk.gov.hmcts.sptribs.testutil.TestConstants.SIGN_IN_DISSOLUTION_TEST_URL;
 import static uk.gov.hmcts.sptribs.testutil.TestConstants.SIGN_IN_DIVORCE_TEST_URL;
 import static uk.gov.hmcts.sptribs.testutil.TestConstants.TEST_APPLICANT_2_USER_EMAIL;
+import static uk.gov.hmcts.sptribs.testutil.TestConstants.TEST_AUTHORIZATION_TOKEN;
 import static uk.gov.hmcts.sptribs.testutil.TestConstants.TEST_CASE_ID;
 import static uk.gov.hmcts.sptribs.testutil.TestConstants.TEST_FIRST_NAME;
 import static uk.gov.hmcts.sptribs.testutil.TestConstants.TEST_LAST_NAME;
@@ -324,6 +326,19 @@ public class TestDataHelper {
         caseData.getApplication().setApplicant2ScreenHasMarriageBroken(YES);
 
         return caseData;
+    }
+
+    public static Payment payment(final int amount, final PaymentStatus paymentStatus) {
+        return Payment.builder()
+            .created(LocalDateTime.now())
+            .updated(LocalDateTime.now())
+            .amount(amount)
+            .channel("online")
+            .feeCode("FEE0001")
+            .status(paymentStatus)
+            .reference("paymentRef")
+            .transactionId("ge7po9h5bhbtbd466424src9tk")
+            .build();
     }
 
     public static CaseData caseDataWithStatementOfTruth() {
@@ -630,7 +645,7 @@ public class TestDataHelper {
     }
 
     public static ListValue<ConfidentialDivorceDocument> confidentialDocumentWithType(final ConfidentialDocumentsReceived documentType,
-                                                              final String documentId) {
+                                                                                      final String documentId) {
         String documentUrl = "http://localhost:8080/" + documentId;
 
         Document ccdDocument = new Document(
@@ -662,16 +677,6 @@ public class TestDataHelper {
             .build();
     }
 
-    public static OrganisationContactInformation organisationContactInformation() {
-        return OrganisationContactInformation
-            .builder()
-            .addressLine1("addressLine1")
-            .addressLine2("addressLine2")
-            .addressLine3("addressLine3")
-            .townCity("townCity")
-            .country("country")
-            .build();
-    }
 
     public static String getFeeResponseAsJson() throws JsonProcessingException {
         return OBJECT_MAPPER.writeValueAsString(getFeeResponse());
@@ -977,5 +982,15 @@ public class TestDataHelper {
         caseData.setApplicant1(getApplicantWithAddress());
         caseData.setApplicant2(getApplicantWithAddress());
         return caseData;
+    }
+
+    public static User getUser() {
+        UserDetails userDetails = UserDetails
+            .builder()
+            .forename("testFname")
+            .surname("testSname")
+            .build();
+
+        return new User(TEST_AUTHORIZATION_TOKEN, userDetails);
     }
 }
