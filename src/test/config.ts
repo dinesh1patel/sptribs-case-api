@@ -1,7 +1,7 @@
 export const config = {
   TEST_URL: 'http://localhost:3000',
-  TestHeadlessBrowser: process.env.TEST_HEADLESS ? process.env.TEST_HEADLESS === 'true' : true,
-  WaitForTimeout: 120000,
+  TestHeadlessBrowser: process.env.TEST_HEADLESS ? process.env.TEST_HEADLESS === 'true' : false,
+  WaitForTimeout: 60000,
   Gherkin: {
     features: './features/**/*.feature',
     steps: './steps/**/*.ts',

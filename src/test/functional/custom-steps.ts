@@ -6,12 +6,14 @@ export = function () {
       this.fillField('#username', username);
       this.fillField('#password', password);
       this.click('Sign in');
+      this.waitForText('Filters', 60);
+      this.seeInCurrentUrl('/cases');
     },
     logout: function () {
       this.click('Sign out');
       this.see('Sign in');
     },
-    createCase: function () {
+    createCase: async function () {
       this.amOnPage('/cases/case-filter');
       this.waitForText('Create Case', 10);
       this.waitForValue('#cc-jurisdiction', 'DIVORCE', 20);
@@ -47,7 +49,9 @@ export = function () {
       this.click('Save and continue');
       this.waitForText('Case Created', 20);
       this.see('Case reference number');
-      return this.grabTextFrom({css: '.markdown'}).toString().split(':\n')[1];
+      let caseNumber = await this.grabTextFrom('//h2[2]');
+      console.log(caseNumber);
+      return caseNumber;
     }
   });
 };
