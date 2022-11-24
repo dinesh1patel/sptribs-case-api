@@ -12,7 +12,7 @@ public enum UserRole implements HasRole {
     // Common User roles
     SUPER_USER("caseworker-divorce-superuser", "CRU"),
     SYSTEMUPDATE("caseworker-divorce-systemupdate", "CRU"),
-    SOLICITOR("caseworker-divorce-solicitor", "CRU"),
+    SOLICITOR("caseworker", "CRU"),
     CREATOR("[CREATOR]", "CRU"),
 
     // CIC User roles

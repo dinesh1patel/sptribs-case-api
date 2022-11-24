@@ -452,7 +452,7 @@ bootWithCCD {
             def value = it.substring(index + 1)
             environment key, value
         }
-        //environment 'CITIZEN_UPDATE_CASE_STATE_ENABLED', 'true'
+        //environment 'XUI_JURISDICTIONS', 'ST_CIC,DIVORCE'
     }
 }
 

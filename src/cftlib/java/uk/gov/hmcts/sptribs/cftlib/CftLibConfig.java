@@ -38,19 +38,20 @@ public class CftLibConfig implements CFTLibConfigurer {
             "TEST_CASE_WORKER_USER@mailinator.com",
             "TEST_SOLICITOR@mailinator.com",
             "divorce_as_caseworker_admin@mailinator.com")) {
-            lib.createProfile(p, "DIVORCE", "NO_FAULT_DIVORCE", state);
+            //lib.createProfile(p, "ST_CIC", "CIC", state);
             lib.createProfile(p, CcdServiceCode.CIC.getCcdServiceName(), CcdCaseType.CIC.name(), state);
-            lib.createProfile(p, CcdServiceCode.CS.getCcdServiceName(), CcdCaseType.CS.name(), state);
-            lib.createProfile(p, CcdServiceCode.MH.getCcdServiceName(), CcdCaseType.MH.name(), state);
-            lib.createProfile(p, CcdServiceCode.PHL.getCcdServiceName(), CcdCaseType.PHL.name(), state);
-            lib.createProfile(p, CcdServiceCode.SEN.getCcdServiceName(), CcdCaseType.SEN.name(), state);
-            lib.createProfile(p, CcdServiceCode.DD.getCcdServiceName(), CcdCaseType.DD.name(), state);
+            //lib.createProfile(p, CcdServiceCode.CS.getCcdServiceName(), CcdCaseType.CS.name(), state);
+            //lib.createProfile(p, CcdServiceCode.MH.getCcdServiceName(), CcdCaseType.MH.name(), state);
+            //lib.createProfile(p, CcdServiceCode.PHL.getCcdServiceName(), CcdCaseType.PHL.name(), state);
+            //lib.createProfile(p, CcdServiceCode.SEN.getCcdServiceName(), CcdCaseType.SEN.name(), state);
+            //lib.createProfile(p, CcdServiceCode.DD.getCcdServiceName(), CcdCaseType.DD.name(), state);
         }
 
         lib.createRoles(
             "caseworker-divorce-superuser",
             "caseworker-divorce-solicitor",
             "caseworker-divorce-systemupdate",
+            "caseworker-st_cic",
             "caseworker-sptribs-superuser",
             "caseworker-sptribs-cic-courtadmin",
             "citizen-sptribs-cic-dss",

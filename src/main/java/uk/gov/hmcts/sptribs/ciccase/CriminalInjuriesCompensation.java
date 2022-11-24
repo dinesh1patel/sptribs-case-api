@@ -18,7 +18,7 @@ import uk.gov.hmcts.sptribs.common.ccd.CcdServiceCode;
 public class CriminalInjuriesCompensation implements CCDConfig<CaseData, State, UserRole> {
 
     public static final String CASE_TYPE = "CIC";
-    public static final String JURISDICTION = "DIVORCE";
+    public static final String JURISDICTION = "ST_CIC";
 
     @Override
     public void configure(final ConfigBuilder<CaseData, State, UserRole> configBuilder) {
