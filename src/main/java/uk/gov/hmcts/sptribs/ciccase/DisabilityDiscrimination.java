@@ -19,10 +19,10 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 @Slf4j
 public class DisabilityDiscrimination implements CCDConfig<DisabilityDiscriminationData, State, UserRole> {
 
-    public static final String CASE_TYPE = "DD";
-    public static final String CASE_TYPE_SHORT_NAME = "DD Case type";
+    public static final String CASE_TYPE = "DisabilityDiscrimination";
+    public static final String CASE_TYPE_SHORT_NAME = "Disability Discrimination";
     public static final String JURISDICTION = "ST_SEND";
-    public static final String JURISDICTION_SHORT_NAME = "SEND";
+    public static final String JURISDICTION_SHORT_NAME = "Special Educational Needs and Disabilities";
 
     @Override
     public void configure(final ConfigBuilder<DisabilityDiscriminationData, State, UserRole> configBuilder) {

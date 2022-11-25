@@ -19,10 +19,10 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 @Slf4j
 public class CriminalInjuriesCompensation implements CCDConfig<CriminalInjuriesCompensationData, State, UserRole> {
 
-    public static final String CASE_TYPE = "CIC";
-    public static final String CASE_TYPE_SHORT_NAME = "CIC Case type";
+    public static final String CASE_TYPE = "CriminalInjuriesCompensation";
+    public static final String CASE_TYPE_SHORT_NAME = "Criminal Injuries Compensation";
     public static final String JURISDICTION = "ST_CIC";
-    public static final String JURISDICTION_SHORT_NAME = "CIC";
+    public static final String JURISDICTION_SHORT_NAME = "Criminal Injuries Compensation";
 
     @Override
     public void configure(final ConfigBuilder<CriminalInjuriesCompensationData, State, UserRole> configBuilder) {

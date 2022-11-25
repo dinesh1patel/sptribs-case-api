@@ -19,10 +19,10 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 @Slf4j
 public class CareStandards implements CCDConfig<CareStandardsData, State, UserRole> {
 
-    public static final String CASE_TYPE = "CS";
-    public static final String CASE_TYPE_SHORT_NAME = "CS Case type";
+    public static final String CASE_TYPE = "CareStandards";
+    public static final String CASE_TYPE_SHORT_NAME = "Care Standards";
     public static final String JURISDICTION = "ST_CS";
-    public static final String JURISDICTION_SHORT_NAME = "CS";
+    public static final String JURISDICTION_SHORT_NAME = "Care Standards";
 
     @Override
     public void configure(final ConfigBuilder<CareStandardsData, State, UserRole> configBuilder) {

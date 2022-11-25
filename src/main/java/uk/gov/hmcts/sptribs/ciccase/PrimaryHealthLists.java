@@ -19,10 +19,10 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 @Slf4j
 public class PrimaryHealthLists implements CCDConfig<PrimaryHealthListsData, State, UserRole> {
 
-    public static final String CASE_TYPE = "PHL";
-    public static final String CASE_TYPE_SHORT_NAME = "PHL Case type";
+    public static final String CASE_TYPE = "PrimaryHealthLists";
+    public static final String CASE_TYPE_SHORT_NAME = "Primary Health Lists";
     public static final String JURISDICTION = "ST_PHL";
-    public static final String JURISDICTION_SHORT_NAME = "PHL";
+    public static final String JURISDICTION_SHORT_NAME = "Primary Health Lists";
 
     @Override
     public void configure(final ConfigBuilder<PrimaryHealthListsData, State, UserRole> configBuilder) {

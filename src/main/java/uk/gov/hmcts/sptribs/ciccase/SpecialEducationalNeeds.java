@@ -19,10 +19,10 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 @Slf4j
 public class SpecialEducationalNeeds implements CCDConfig<SpecialEducationalNeedsData, State, UserRole> {
 
-    public static final String CASE_TYPE = "SEN";
-    public static final String CASE_TYPE_SHORT_NAME = "SEN Case type";
+    public static final String CASE_TYPE = "SpecialEducationalNeeds";
+    public static final String CASE_TYPE_SHORT_NAME = "Special Educational Needs";
     public static final String JURISDICTION = "ST_SEND";
-    public static final String JURISDICTION_SHORT_NAME = "SEND";
+    public static final String JURISDICTION_SHORT_NAME = "Special Educational Needs and Disabilities";
 
 
     @Override

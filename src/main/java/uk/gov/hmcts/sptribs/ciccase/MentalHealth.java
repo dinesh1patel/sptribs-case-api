@@ -19,10 +19,10 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 @Slf4j
 public class MentalHealth implements CCDConfig<MentalHealthData, State, UserRole> {
 
-    public static final String CASE_TYPE = "MH";
-    public static final String CASE_TYPE_SHORT_NAME = "MH Case type";
+    public static final String CASE_TYPE = "MentalHealth";
+    public static final String CASE_TYPE_SHORT_NAME = "Mental Health";
     public static final String JURISDICTION = "ST_MH";
-    public static final String JURISDICTION_SHORT_NAME = "MH";
+    public static final String JURISDICTION_SHORT_NAME = "Mental Health";
 
     @Override
     public void configure(final ConfigBuilder<MentalHealthData, State, UserRole> configBuilder) {
