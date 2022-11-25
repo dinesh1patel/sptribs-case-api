@@ -20,7 +20,9 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 public class MentalHealth implements CCDConfig<MentalHealthData, State, UserRole> {
 
     public static final String CASE_TYPE = "MH";
-    public static final String JURISDICTION = "DIVORCE";
+    public static final String CASE_TYPE_SHORT_NAME = "MH Case type";
+    public static final String JURISDICTION = "ST_MH";
+    public static final String JURISDICTION_SHORT_NAME = "MH";
 
     @Override
     public void configure(final ConfigBuilder<MentalHealthData, State, UserRole> configBuilder) {
@@ -32,8 +34,8 @@ public class MentalHealth implements CCDConfig<MentalHealthData, State, UserRole
         configBuilder.addPreEventHook(RetiredFields::migrate);
         configBuilder.setCallbackHost(System.getenv().getOrDefault("CASE_API_URL", "http://localhost:4013"));
 
-        configBuilder.caseType(CcdCaseType.ST_MH.name(), "MH Case Type", CcdCaseType.ST_MH.getDescription());
-        configBuilder.jurisdiction(JURISDICTION, CASE_TYPE, CcdServiceCode.MH.getCcdServiceDescription());
+        configBuilder.caseType(CASE_TYPE, CASE_TYPE_SHORT_NAME, CcdCaseType.MH.getDescription());
+        configBuilder.jurisdiction(JURISDICTION, JURISDICTION_SHORT_NAME, CcdServiceCode.MH.getCcdServiceDescription());
 
         configBuilder.event("test")
             .forState(State.AwaitingApplicant1Response)

@@ -20,7 +20,9 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 public class CareStandards implements CCDConfig<CareStandardsData, State, UserRole> {
 
     public static final String CASE_TYPE = "CS";
-    public static final String JURISDICTION = "DIVORCE";
+    public static final String CASE_TYPE_SHORT_NAME = "CS Case type";
+    public static final String JURISDICTION = "ST_CS";
+    public static final String JURISDICTION_SHORT_NAME = "CS";
 
     @Override
     public void configure(final ConfigBuilder<CareStandardsData, State, UserRole> configBuilder) {
@@ -32,8 +34,8 @@ public class CareStandards implements CCDConfig<CareStandardsData, State, UserRo
         configBuilder.addPreEventHook(RetiredFields::migrate);
         configBuilder.setCallbackHost(System.getenv().getOrDefault("CASE_API_URL", "http://localhost:4013"));
 
-        configBuilder.caseType(CcdCaseType.ST_CS.name(), "CS Case Type", CcdCaseType.ST_CS.getDescription());
-        configBuilder.jurisdiction(JURISDICTION, CASE_TYPE, CcdServiceCode.CS.getCcdServiceDescription());
+        configBuilder.caseType(CASE_TYPE, CASE_TYPE_SHORT_NAME, CcdCaseType.CS.getDescription());
+        configBuilder.jurisdiction(JURISDICTION, JURISDICTION_SHORT_NAME, CcdServiceCode.CS.getCcdServiceDescription());
 
         configBuilder.event("test")
             .forState(State.AwaitingApplicant1Response)

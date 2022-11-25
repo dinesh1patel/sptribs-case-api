@@ -20,7 +20,9 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 public class DisabilityDiscrimination implements CCDConfig<DisabilityDiscriminationData, State, UserRole> {
 
     public static final String CASE_TYPE = "DD";
-    public static final String JURISDICTION = "DIVORCE";
+    public static final String CASE_TYPE_SHORT_NAME = "DD Case type";
+    public static final String JURISDICTION = "ST_SEND";
+    public static final String JURISDICTION_SHORT_NAME = "SEND";
 
     @Override
     public void configure(final ConfigBuilder<DisabilityDiscriminationData, State, UserRole> configBuilder) {
@@ -32,8 +34,8 @@ public class DisabilityDiscrimination implements CCDConfig<DisabilityDiscriminat
         configBuilder.addPreEventHook(RetiredFields::migrate);
         configBuilder.setCallbackHost(System.getenv().getOrDefault("CASE_API_URL", "http://localhost:4013"));
 
-        configBuilder.caseType(CcdCaseType.ST_DD.name(), "DD Case Type", CcdCaseType.ST_DD.getDescription());
-        configBuilder.jurisdiction(JURISDICTION, CASE_TYPE, CcdServiceCode.DD.getCcdServiceDescription());
+        configBuilder.caseType(CASE_TYPE, CASE_TYPE_SHORT_NAME, CcdCaseType.DD.getDescription());
+        configBuilder.jurisdiction(JURISDICTION, JURISDICTION_SHORT_NAME, CcdServiceCode.DD.getCcdServiceDescription());
 
         configBuilder.event("test")
             .forState(State.AwaitingApplicant1Response)

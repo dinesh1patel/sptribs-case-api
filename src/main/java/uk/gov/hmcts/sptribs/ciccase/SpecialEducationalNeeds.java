@@ -19,8 +19,11 @@ import static uk.gov.hmcts.sptribs.ciccase.search.SearchResultFields.SEARCH_RESU
 @Slf4j
 public class SpecialEducationalNeeds implements CCDConfig<SpecialEducationalNeedsData, State, UserRole> {
 
-    public static final String CASE_TYPE = "SEND";
-    public static final String JURISDICTION = "DIVORCE";
+    public static final String CASE_TYPE = "SEN";
+    public static final String CASE_TYPE_SHORT_NAME = "SEN Case type";
+    public static final String JURISDICTION = "ST_SEND";
+    public static final String JURISDICTION_SHORT_NAME = "SEND";
+
 
     @Override
     public void configure(final ConfigBuilder<SpecialEducationalNeedsData, State, UserRole> configBuilder) {
@@ -32,8 +35,8 @@ public class SpecialEducationalNeeds implements CCDConfig<SpecialEducationalNeed
         configBuilder.addPreEventHook(RetiredFields::migrate);
         configBuilder.setCallbackHost(System.getenv().getOrDefault("CASE_API_URL", "http://localhost:4013"));
 
-        configBuilder.caseType(CcdCaseType.ST_SEN.name(), "SEND Case Type", CcdCaseType.ST_SEN.getDescription());
-        configBuilder.jurisdiction(JURISDICTION, CASE_TYPE, CcdServiceCode.SEN.getCcdServiceDescription());
+        configBuilder.caseType(CASE_TYPE, CASE_TYPE_SHORT_NAME, CcdCaseType.SEN.getDescription());
+        configBuilder.jurisdiction(JURISDICTION, JURISDICTION_SHORT_NAME, CcdServiceCode.SEN.getCcdServiceDescription());
 
         configBuilder.event("test")
             .forState(State.AwaitingApplicant1Response)

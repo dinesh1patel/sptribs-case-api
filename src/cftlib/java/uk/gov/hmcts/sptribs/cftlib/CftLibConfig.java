@@ -51,13 +51,12 @@ public class CftLibConfig implements CFTLibConfigurer {
             "TEST_CASE_WORKER_USER@mailinator.com",
             "TEST_SOLICITOR@mailinator.com",
             "divorce_as_caseworker_admin@mailinator.com")) {
-            lib.createProfile(p, "DIVORCE", "NO_FAULT_DIVORCE", state);
-            lib.createProfile(p, CcdServiceCode.CIC.getCcdServiceName(), CcdCaseType.ST_CIC.name(), state);
-            lib.createProfile(p, CcdServiceCode.CS.getCcdServiceName(), CcdCaseType.ST_CS.name(), state);
-            lib.createProfile(p, CcdServiceCode.MH.getCcdServiceName(), CcdCaseType.ST_MH.name(), state);
-            lib.createProfile(p, CcdServiceCode.PHL.getCcdServiceName(), CcdCaseType.ST_PHL.name(), state);
-            lib.createProfile(p, CcdServiceCode.SEN.getCcdServiceName(), CcdCaseType.ST_SEN.name(), state);
-            lib.createProfile(p, CcdServiceCode.DD.getCcdServiceName(), CcdCaseType.ST_DD.name(), state);
+            lib.createProfile(p, "ST_CIC", CcdCaseType.CIC.name(), state);
+            lib.createProfile(p, "ST_CS", CcdCaseType.CS.name(), state);
+            lib.createProfile(p, "ST_MH", CcdCaseType.MH.name(), state);
+            lib.createProfile(p, "ST_PHL", CcdCaseType.PHL.name(), state);
+            lib.createProfile(p, "ST_SEND", CcdCaseType.SEN.name(), state);
+            lib.createProfile(p, "ST_SEND", CcdCaseType.DD.name(), state);
         }
 
         lib.createRoles(
@@ -81,11 +80,11 @@ public class CftLibConfig implements CFTLibConfigurer {
 
         configWriter.generateAllCaseTypesToJSON(new File("build/definitions"));
         // Run the gradle task to convert to xlsx.
-        lib.importJsonDefinition(new File("build/definitions/ST_CIC"));
-        lib.importJsonDefinition(new File("build/definitions/ST_CS"));
-        lib.importJsonDefinition(new File("build/definitions/ST_DD"));
-        lib.importJsonDefinition(new File("build/definitions/ST_MH"));
-        lib.importJsonDefinition(new File("build/definitions/ST_PHL"));
-        lib.importJsonDefinition(new File("build/definitions/ST_SEN"));
+        lib.importJsonDefinition(new File("build/definitions/CIC"));
+        lib.importJsonDefinition(new File("build/definitions/CS"));
+        lib.importJsonDefinition(new File("build/definitions/DD"));
+        lib.importJsonDefinition(new File("build/definitions/MH"));
+        lib.importJsonDefinition(new File("build/definitions/PHL"));
+        lib.importJsonDefinition(new File("build/definitions/SEN"));
     }
 }
