@@ -7,7 +7,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.ConfigBuilderImpl;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
 import uk.gov.hmcts.ccd.sdk.api.Event;
-import uk.gov.hmcts.ccd.sdk.api.callback.AboutToStartOrSubmitResponse;
 import uk.gov.hmcts.reform.ccd.client.model.SubmittedCallbackResponse;
 import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
 import uk.gov.hmcts.sptribs.ciccase.model.State;
@@ -21,8 +20,9 @@ import static uk.gov.hmcts.sptribs.testutil.TestConstants.TEST_CASE_ID;
 import static uk.gov.hmcts.sptribs.testutil.TestDataHelper.LOCAL_DATE_TIME;
 import static uk.gov.hmcts.sptribs.testutil.TestDataHelper.caseData;
 
+
 @ExtendWith(MockitoExtension.class)
-public class CaseWorkerEditDraftOrderTest {
+class CaseWorkerEditDraftOrderTest {
     @InjectMocks
     private CaseWorkerEditDraftOrder caseWorkerEditDraftOrder;
 
@@ -41,23 +41,24 @@ public class CaseWorkerEditDraftOrderTest {
     }
 
     @Test
-    public void shouldSuccessfullyEditDraftOrder() {
+    void shouldSuccessfullySaveDraftOrder() {
         //Given
         final CaseData caseData = caseData();
         final CaseDetails<CaseData, State> updatedCaseDetails = new CaseDetails<>();
         final CaseDetails<CaseData, State> beforeDetails = new CaseDetails<>();
+
         updatedCaseDetails.setData(caseData);
         updatedCaseDetails.setId(TEST_CASE_ID);
         updatedCaseDetails.setCreatedDate(LOCAL_DATE_TIME);
 
         //When
-        AboutToStartOrSubmitResponse<CaseData, State> response =
-            caseWorkerEditDraftOrder.aboutToSubmit(updatedCaseDetails, beforeDetails);
-        SubmittedCallbackResponse stayedResponse = caseWorkerEditDraftOrder.draftCreated(updatedCaseDetails, beforeDetails);
 
-        //Then
-        assertThat(response).isNotNull();
-        assertThat(stayedResponse).isNotNull();
+
+        SubmittedCallbackResponse draftCreatedResponse = caseWorkerEditDraftOrder.draftCreated(updatedCaseDetails, beforeDetails);
+        //  Then
+        assertThat(draftCreatedResponse).isNotNull();
+
     }
+
 }
 

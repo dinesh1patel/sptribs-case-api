@@ -2,17 +2,31 @@ package uk.gov.hmcts.sptribs.caseworker.event;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.callback.AboutToStartOrSubmitResponse;
+import uk.gov.hmcts.ccd.sdk.type.DynamicList;
 import uk.gov.hmcts.reform.ccd.client.model.SubmittedCallbackResponse;
+import uk.gov.hmcts.sptribs.caseworker.event.page.RecordNotifyParties;
+import uk.gov.hmcts.sptribs.caseworker.event.page.SelectTemplate;
+import uk.gov.hmcts.sptribs.caseworker.event.page.UploadHearingNotice;
 import uk.gov.hmcts.sptribs.caseworker.model.RecordListing;
 import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.ciccase.model.CicCase;
 import uk.gov.hmcts.sptribs.ciccase.model.State;
 import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
+import uk.gov.hmcts.sptribs.common.ccd.CcdPageConfiguration;
 import uk.gov.hmcts.sptribs.common.ccd.PageBuilder;
+import uk.gov.hmcts.sptribs.common.event.page.HearingVenues;
+import uk.gov.hmcts.sptribs.recordlisting.LocationService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static uk.gov.hmcts.sptribs.ciccase.model.State.AwaitingHearing;
 import static uk.gov.hmcts.sptribs.ciccase.model.State.CaseManagement;
@@ -20,29 +34,61 @@ import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.COURT_ADMIN_CIC;
 import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.SOLICITOR;
 import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.SUPER_USER;
 import static uk.gov.hmcts.sptribs.ciccase.model.access.Permissions.CREATE_READ_UPDATE_DELETE;
+import static uk.gov.hmcts.sptribs.recordlisting.RecordListingConstants.HYPHEN;
 
 @Component
 @Slf4j
 public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserRole> {
     public static final String CASEWORKER_RECORD_LISTING = "caseworker-record-listing";
 
+    private static final CcdPageConfiguration hearingVenues = new HearingVenues();
+    private static final CcdPageConfiguration uploadHearingNotice = new UploadHearingNotice();
+    private static final CcdPageConfiguration selectTemplate = new SelectTemplate();
+    private static final CcdPageConfiguration recordNotifyParties = new RecordNotifyParties();
+
+    @Autowired
+    private LocationService locationService;
+
     @Override
     public void configure(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         PageBuilder pageBuilder = new PageBuilder(configBuilder
             .event(CASEWORKER_RECORD_LISTING)
-            .forStates(CaseManagement)
+            .forStates(CaseManagement, AwaitingHearing)
             .name("Record listing")
-            .showSummary()
             .description("Record listing")
+            .showEventNotes()
+            .showSummary()
+            .aboutToStartCallback(this::aboutToStart)
             .aboutToSubmitCallback(this::aboutToSubmit)
             .submittedCallback(this::submitted)
-            .showEventNotes()
             .grant(CREATE_READ_UPDATE_DELETE, COURT_ADMIN_CIC, SUPER_USER)
             .grantHistoryOnly(SOLICITOR));
 
         addHearingTypeAndFormat(pageBuilder);
+        addRegionInfo(pageBuilder);
+        hearingVenues.addTo(pageBuilder);
         addRemoteHearingInfo(pageBuilder);
         addOtherInformation(pageBuilder);
+        addHearingNotice(pageBuilder);
+        uploadHearingNotice.addTo(pageBuilder);
+        selectTemplate.addTo(pageBuilder);
+        recordNotifyParties.addTo(pageBuilder);
+    }
+
+    public AboutToStartOrSubmitResponse<CaseData, State> aboutToStart(CaseDetails<CaseData, State> details) {
+        var caseData = details.getData();
+        DynamicList regionList = locationService.getAllRegions();
+        caseData.getRecordListing().setRegionList(regionList);
+
+        String regionMessage = regionList == null || regionList.getListItems().isEmpty()
+            ? "Unable to retrieve Region data"
+            : null;
+        caseData.getRecordListing().setRegionsMessage(regionMessage);
+
+        return AboutToStartOrSubmitResponse.<CaseData, State>builder()
+            .data(caseData)
+            .state(CaseManagement)
+            .build();
     }
 
     @SneakyThrows
@@ -51,10 +97,16 @@ public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserR
         log.info("Caseworker record listing callback invoked for Case Id: {}", details.getId());
 
         var caseData = details.getData();
+        final List<String> errors = new ArrayList<>();
+
+        if (checkNullCondition(details.getData().getCicCase())) {
+            errors.add("One party must be selected.");
+        }
 
         return AboutToStartOrSubmitResponse.<CaseData, State>builder()
             .data(caseData)
             .state(AwaitingHearing)
+            .errors(errors)
             .build();
     }
 
@@ -65,13 +117,58 @@ public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserR
             .build();
     }
 
+    public AboutToStartOrSubmitResponse<CaseData, State> midEvent(CaseDetails<CaseData, State> details,
+                                                                  CaseDetails<CaseData, State> detailsBefore) {
+        final CaseData caseData = details.getData();
+        String selectedRegion = caseData.getRecordListing().getSelectedRegionVal();
+        String regionId = getRegionId(selectedRegion);
+
+        if (null != regionId) {
+            DynamicList hearingVenueList = locationService.getHearingVenuesByRegion(regionId);
+            caseData.getRecordListing().setHearingVenues(hearingVenueList);
+
+            String hearingVenueMessage = hearingVenueList == null || hearingVenueList.getListItems().isEmpty()
+                ? "Unable to retrieve Hearing Venues data"
+                : null;
+            caseData.getRecordListing().setHearingVenuesMessage(hearingVenueMessage);
+
+        }
+
+        return AboutToStartOrSubmitResponse.<CaseData, State>builder()
+            .data(caseData)
+            .build();
+    }
+
+    private boolean checkNullCondition(CicCase cicCase) {
+        return null != cicCase
+            && CollectionUtils.isEmpty(cicCase.getRecordNotifyPartySubject())
+            && CollectionUtils.isEmpty(cicCase.getRecordNotifyPartyRepresentative())
+            && CollectionUtils.isEmpty(cicCase.getRecordNotifyPartyRespondent());
+    }
+
     private void addHearingTypeAndFormat(PageBuilder pageBuilder) {
         pageBuilder.page("hearingTypeAndFormat")
-            .label("hearingTypeAndFormatObj", "<h1>Hearing type and format</h1>")
+            .pageLabel("Hearing type and format")
             .complex(CaseData::getRecordListing)
             .mandatory(RecordListing::getHearingType)
             .mandatory(RecordListing::getHearingFormat)
             .done();
+    }
+
+    private void addRegionInfo(PageBuilder pageBuilder) {
+        pageBuilder.page("regionInfo", this::midEvent)
+            .label("regionInfoObj", "<h1>Region Data</h1>")
+            .complex(CaseData::getRecordListing)
+            .readonly(RecordListing::getRegionsMessage)
+            .optional(RecordListing::getRegionList)
+            .done();
+    }
+
+    private String getRegionId(String selectedRegion) {
+        String[] values = selectedRegion != null
+            ? Arrays.stream(selectedRegion.split(HYPHEN)).map(String::trim).toArray(String[]::new)
+            : null;
+        return values != null && values.length > 0 ? values[0] : null;
     }
 
     private void addRemoteHearingInfo(PageBuilder pageBuilder) {
@@ -94,4 +191,13 @@ public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserR
             .optional(RecordListing::getImportantInfoDetails)
             .done();
     }
+
+    private void addHearingNotice(PageBuilder pageBuilder) {
+        pageBuilder.page("hearingNotice")
+            .label("hearingNoticeObj", "<h1>Create a hearing Notice</h1>")
+            .complex(CaseData::getRecordListing)
+            .mandatory(RecordListing::getHearingNotice)
+            .done();
+    }
+
 }

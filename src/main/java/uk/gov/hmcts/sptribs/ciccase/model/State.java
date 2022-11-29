@@ -19,6 +19,19 @@ public enum State {
         access = {DefaultStateAccess.class}
     )
     Rejected("Rejected"),
+    @CCD(
+        label = "Application completed",
+        hint = "### Case number: ${hyphenatedCaseRef}",
+        access = {DefaultStateAccess.class}
+    )
+    Completed("Completed"),
+
+    @CCD(
+        label = "Application Sent",
+        hint = "### Case number: ${hyphenatedCaseRef}",
+        access = {DefaultStateAccess.class}
+    )
+    Sent("Sent"),
 
     @CCD(
         label = "Application withdrawn",
@@ -130,7 +143,7 @@ public enum State {
     ));
 
 
-    public static final EnumSet<State> ALL_STATES = EnumSet.complementOf(EnumSet.of(
+    protected static final EnumSet<State> ALL_STATES = EnumSet.complementOf(EnumSet.of(
         Draft,
         AwaitingApplicant1Response,
         AwaitingApplicant2Response,
