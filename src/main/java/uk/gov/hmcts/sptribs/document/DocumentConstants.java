@@ -3,7 +3,7 @@ package uk.gov.hmcts.sptribs.document;
 public final class DocumentConstants {
     public static final String FINAL_DECISION_FILE = "Final-decision-notice";
 
-    public static final String CASE_APPLICATION_FORM = "CASE_APPLICATION_FORM";
+    /*public static final String CASE_APPLICATION_FORM = "CASE_APPLICATION_FORM";
     public static final String TRIBUNAL_DIRECTION = "TRIBUNAL_DIRECTION";
     public static final String POLICE_EVIDENCE = "POLICE_EVIDENCE";
     public static final String MEDICAL_EVIDENCE = "MEDICAL_EVIDENCE";
@@ -11,7 +11,7 @@ public final class DocumentConstants {
     public static final String CARE_DOCUMENTS = "CARE_DOCUMENTS";
     public static final String LINKED_DOCUMENTS_FROM_A_LINKED_PAST_CASE = "LINKED_DOCUMENTS";
     public static final String STATEMENTS = "STATEMENTS";
-    public static final String GENERAL_EVIDENCE = "GENERAL_EVIDENCE";
+    public static final String GENERAL_EVIDENCE = "GENERAL_EVIDENCE";*/
 
 
     public static final String DIVORCE_APPLICATION_SOLE = "DIVORCE_APPLICATION_SOLE";

@@ -11,6 +11,7 @@ import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.callback.AboutToStartOrSubmitResponse;
 import uk.gov.hmcts.ccd.sdk.type.DynamicList;
 import uk.gov.hmcts.reform.ccd.client.model.SubmittedCallbackResponse;
+import uk.gov.hmcts.sptribs.caseworker.event.page.RecordListingPreviewTemplate;
 import uk.gov.hmcts.sptribs.caseworker.event.page.RecordNotifyParties;
 import uk.gov.hmcts.sptribs.caseworker.event.page.SelectTemplate;
 import uk.gov.hmcts.sptribs.caseworker.event.page.UploadHearingNotice;
@@ -47,6 +48,7 @@ public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserR
     private static final CcdPageConfiguration hearingVenues = new HearingVenues();
     private static final CcdPageConfiguration uploadHearingNotice = new UploadHearingNotice();
     private static final CcdPageConfiguration selectTemplate = new SelectTemplate();
+    private static final CcdPageConfiguration recordListingPreviewTemplate = new RecordListingPreviewTemplate();
     private static final CcdPageConfiguration recordNotifyParties = new RecordNotifyParties();
 
     @Autowired
@@ -75,6 +77,8 @@ public class CaseworkerRecordListing implements CCDConfig<CaseData, State, UserR
         addHearingNotice(pageBuilder);
         uploadHearingNotice.addTo(pageBuilder);
         selectTemplate.addTo(pageBuilder);
+        //TODO: Issue with pageShowCondition in recordListingPreviewTemplate. Need to look into the issue - Santoshini
+        recordListingPreviewTemplate.addTo(pageBuilder);
         recordNotifyParties.addTo(pageBuilder);
     }
 

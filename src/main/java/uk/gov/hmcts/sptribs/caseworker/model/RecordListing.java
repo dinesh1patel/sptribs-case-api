@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.Document;
 import uk.gov.hmcts.ccd.sdk.type.DynamicList;
 import uk.gov.hmcts.ccd.sdk.type.ListValue;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
@@ -192,6 +193,12 @@ public class RecordListing {
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
     private Set<NotificationParties> notificationParties;
+
+    @CCD(
+        label = "Hearing notice preview",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private Document recordListingDraft;
 
     @JsonIgnore
     public String getSelectedRegionVal() {
