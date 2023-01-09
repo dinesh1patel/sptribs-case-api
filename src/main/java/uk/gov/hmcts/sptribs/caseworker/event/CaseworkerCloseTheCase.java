@@ -1,6 +1,8 @@
 package uk.gov.hmcts.sptribs.caseworker.event;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
@@ -13,7 +15,9 @@ import uk.gov.hmcts.sptribs.ciccase.model.State;
 import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
 import uk.gov.hmcts.sptribs.common.ccd.CcdPageConfiguration;
 import uk.gov.hmcts.sptribs.common.ccd.PageBuilder;
+import uk.gov.hmcts.sptribs.common.notification.CaseCloseNotification;
 
+import static java.lang.String.format;
 import static uk.gov.hmcts.sptribs.ciccase.model.State.CaseClosed;
 import static uk.gov.hmcts.sptribs.ciccase.model.State.CaseManagement;
 import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.COURT_ADMIN_CIC;
@@ -27,6 +31,9 @@ public class CaseworkerCloseTheCase implements CCDConfig<CaseData, State, UserRo
     public static final String CASEWORKER_CLOSE_THE_CASE = "caseworker-close-the-case";
 
     private static final CcdPageConfiguration closeCaseWarning = new CloseCaseWarning();
+
+    @Autowired
+    CaseCloseNotification caseCloseNotification;
 
 
     @Override
@@ -65,8 +72,25 @@ public class CaseworkerCloseTheCase implements CCDConfig<CaseData, State, UserRo
 
     public SubmittedCallbackResponse closed(CaseDetails<CaseData, State> details,
                                             CaseDetails<CaseData, State> beforeDetails) {
+        var data = details.getData();
+        var cicCase = data.getCicCase();
+        String caseNumber = data.getHyphenatedCaseRef();
+        final StringBuilder messageLine2 = new StringBuilder(100);
+        messageLine2.append(" A notification will be sent  to: ");
+        if (!CollectionUtils.isEmpty(cicCase.getNotifyPartySubject())) {
+            messageLine2.append("Subject, ");
+            caseCloseNotification.sendToSubject(details.getData(), caseNumber);
+        }
+        if (!CollectionUtils.isEmpty(cicCase.getNotifyPartyRepresentative())) {
+            messageLine2.append("Representative, ");
+            caseCloseNotification.sendToRepresentative(details.getData(), caseNumber);
+        }
+        messageLine2.append("Respondent, ");
+        caseCloseNotification.sendToRespondent(details.getData(), caseNumber);
+
         return SubmittedCallbackResponse.builder()
-            .confirmationHeader("# Case closed")
+            .confirmationHeader(format("# Case closed %n##  This case has now been closed. %n##"
+                + "  %s ", messageLine2.substring(0, messageLine2.length() - 2)))
             .build();
     }
 }

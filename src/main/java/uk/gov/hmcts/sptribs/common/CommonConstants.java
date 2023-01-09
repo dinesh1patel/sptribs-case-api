@@ -9,7 +9,8 @@ public final class CommonConstants {
     public static final String CIC_CASE_APPLICANT_NAME = "CicCaseApplicantFullName";
     public static final String CIC_CASE_REPRESENTATIVE_NAME = "CicCaseRepresentativeFullName";
     public static final String CIC_CASE_RESPONDENT_NAME = "CicCaseRespondentFullName";
-    public static final String CIC_CASE_CICA_REFERENCE = "CicaReference";
+    public  static final String CIC_CASE_CLOSURE_REASON = "ClosureReason";
+    public  static final String CIC_CASE_CLOSURE_INFORMATION = "ClosureInformation";
 
     public static final String REINSTATE_REASON = "ReinstatementReason";
     public static final String STAY_EXPIRATION_DATE = "StayExpirationDate";

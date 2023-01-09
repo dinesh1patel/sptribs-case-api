@@ -54,6 +54,8 @@ uk:
           CASE_ISSUED_CITIZEN_EMAIL: '3f25663d-9f3f-4330-afdb-3302399d29cf'
           CASE_ISSUED_CITIZEN_POST: 'eedc916f-088f-4653-99ed-b954e1dbd58d'
           CASE_ISSUED_RESPONDENT_EMAIL: '65df6386-bf56-498b-a877-e8fd896515d4'
+          CASE_CLOSED_EMAIL: '12985936-b067-4747-aae6-83a375e8295e'
+          CASE_CLOSED_LETTER: '54fe1990-2213-4bcb-9027-7b595cd9db12'
         templates:
           english:
             SAVE_SIGN_OUT: '3aff9dc0-0188-42f6-a0be-fc5daa404d9a'

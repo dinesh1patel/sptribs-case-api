@@ -3,6 +3,8 @@ package uk.gov.hmcts.sptribs.caseworker.event;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.ccd.sdk.ConfigBuilderImpl;
 import uk.gov.hmcts.ccd.sdk.api.CaseDetails;
@@ -18,6 +20,7 @@ import uk.gov.hmcts.sptribs.ciccase.model.RespondentCIC;
 import uk.gov.hmcts.sptribs.ciccase.model.State;
 import uk.gov.hmcts.sptribs.ciccase.model.SubjectCIC;
 import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
+import uk.gov.hmcts.sptribs.common.notification.CaseCloseNotification;
 import uk.gov.hmcts.sptribs.document.model.CICDocument;
 
 import java.util.Set;
@@ -41,6 +44,9 @@ class CloseCaseTest {
 
     @InjectMocks
     private CaseworkerCloseTheCase closeCase;
+
+    @Mock
+    CaseCloseNotification caseCloseNotification;
 
     @Test
     void shouldAddConfigurationToConfigBuilder() {
@@ -86,6 +92,10 @@ class CloseCaseTest {
         updatedCaseDetails.setData(caseData);
         updatedCaseDetails.setId(TEST_CASE_ID);
         updatedCaseDetails.setCreatedDate(LOCAL_DATE_TIME);
+
+        Mockito.doNothing().when(caseCloseNotification).sendToSubject(caseData, caseData.getHyphenatedCaseRef());
+        Mockito.doNothing().when(caseCloseNotification).sendToRepresentative(caseData, caseData.getHyphenatedCaseRef());
+        Mockito.doNothing().when(caseCloseNotification).sendToRespondent(caseData, caseData.getHyphenatedCaseRef());
 
         //When
         assertThat(caseData.getCaseStatus()).isEqualTo(State.CaseManagement);
