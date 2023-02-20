@@ -50,7 +50,6 @@ import static uk.gov.hmcts.ccd.sdk.type.FieldType.TextArea;
 @Builder(toBuilder = true)
 public class CaseData {
 
-
     @JsonUnwrapped(prefix = "orderContent")
     @Builder.Default
     @CCD(
@@ -61,7 +60,6 @@ public class CaseData {
     @Builder.Default
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
     private ContactParties contactParties = new ContactParties();
-
 
 
     @Builder.Default

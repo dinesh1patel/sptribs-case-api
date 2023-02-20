@@ -16,6 +16,7 @@ import java.util.List;
 
 
 
+
 @Component
 @Slf4j
 public class CriminalInjuriesCompensation implements CCDConfig<CriminalInjuriesCompensationData, State, UserRole> {

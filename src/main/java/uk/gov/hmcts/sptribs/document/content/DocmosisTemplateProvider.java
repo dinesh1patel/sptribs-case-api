@@ -13,5 +13,6 @@ public class DocmosisTemplateProvider {
 
     public String templateNameFor(final String templateId, final LanguagePreference languagePreference) {
         return docmosisTemplatesConfig.getTemplates().get(languagePreference).get(templateId);
+
     }
 }
