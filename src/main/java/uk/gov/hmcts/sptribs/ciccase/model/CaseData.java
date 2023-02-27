@@ -205,6 +205,13 @@ public class CaseData {
     private String closedDayCount;
 
     @CCD(
+        label = "Case file view",
+        typeOverride = ComponentLauncher
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private ComponentLauncher componentLauncher;
+
+    @CCD(
         label = "Event",
         access = {DefaultAccess.class}
     )
