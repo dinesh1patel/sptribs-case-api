@@ -204,12 +204,18 @@ public class CaseData {
 
     @CCD(
         label = "Decision notice signature",
-        access = {CaseworkerAndSuperUserAccess.class}
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
     private String decisionSignature;
 
     @CCD(
-        access = {CaseworkerAndSuperUserAccess.class},
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
+        typeOverride = TextArea
+    )
+    private String selectedTemplate;
+
+    @CCD(
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
         typeOverride = TextArea
     )
     private String decisionMainContent;

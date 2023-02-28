@@ -36,8 +36,12 @@ public class IssueFinalDecisionSelectTemplate implements CcdPageConfiguration {
     ) {
         CaseData caseData = details.getData();
         DecisionTemplate decision = caseData.getCaseIssueFinalDecision().getDecisionTemplate();
-        caseData.setDecisionMainContent(EventUtil.getMainContent(decision));
-
+     //   caseData.setDecisionMainContent(EventUtil.getMainContent(decision));
+        if (null == caseData.getSelectedTemplate()
+            || (null != caseData.getSelectedTemplate() && !caseData.getSelectedTemplate().equalsIgnoreCase(decision.getLabel()))) {
+            caseData.setDecisionMainContent(EventUtil.getMainContent(decision));
+            caseData.setSelectedTemplate(decision.getLabel());
+        }
         return AboutToStartOrSubmitResponse.<CaseData, State>builder()
             .data(caseData)
             .build();
