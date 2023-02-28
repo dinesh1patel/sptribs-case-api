@@ -202,24 +202,6 @@ public class CaseData {
     )
     private String currentEvent;
 
-    @CCD(
-        label = "Decision notice signature",
-        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
-    )
-    private String decisionSignature;
-
-    @CCD(
-        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
-        typeOverride = TextArea
-    )
-    private String selectedTemplate;
-
-    @CCD(
-        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
-        typeOverride = TextArea
-    )
-    private String decisionMainContent;
-
     @JsonUnwrapped(prefix = "issueCase")
     @Builder.Default
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})

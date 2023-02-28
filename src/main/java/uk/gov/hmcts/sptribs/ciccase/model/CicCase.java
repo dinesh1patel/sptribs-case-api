@@ -49,6 +49,25 @@ import static uk.gov.hmcts.ccd.sdk.type.FieldType.TextArea;
 public class CicCase {
 
     @CCD(
+        label = "Decision notice signature",
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    private String decisionSignature;
+
+    @CCD(
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+    )
+    @Builder.Default
+    private String selectedTemplate = "";
+
+    @CCD(
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
+        typeOverride = TextArea
+    )
+    @Builder.Default
+    private String decisionMainContent = "";
+
+    @CCD(
         label = "Preview order",
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )

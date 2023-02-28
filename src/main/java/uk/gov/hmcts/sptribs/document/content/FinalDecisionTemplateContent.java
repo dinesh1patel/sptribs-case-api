@@ -29,12 +29,12 @@ public class FinalDecisionTemplateContent {
         templateContent.put(SUBJECT_FULL_NAME, caseData.getHearingSummary().getSubjectName());
         templateContent.put(HEARING_TYPE, caseData.getHearingSummary().getHearingType());
         templateContent.put(TRIBUNAL_MEMBERS, getMembers(caseData.getHearingSummary().getPanelMemberList()));
-        templateContent.put(DECISION_SIGNATURE, caseData.getDecisionSignature());
+        templateContent.put(DECISION_SIGNATURE, caseData.getCicCase().getDecisionSignature());
         templateContent.put(HEARING_TIME, caseData.getRecordListing().getHearingTime());
         templateContent.put(HEARING_VENUE_NAME, caseData.getRecordListing().getHearingVenueNameAndAddress());
         templateContent.put(HEARING_DATE, caseData.getRecordListing().getHearingDate() != null
             ? caseData.getRecordListing().getHearingDate().format(formatter) : "");
-        templateContent.put(MAIN_CONTENT, caseData.getDecisionMainContent());
+        templateContent.put(MAIN_CONTENT, caseData.getCicCase().getDecisionMainContent());
 
         return templateContent;
     }

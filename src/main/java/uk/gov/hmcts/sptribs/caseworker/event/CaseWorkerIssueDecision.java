@@ -18,6 +18,7 @@ import uk.gov.hmcts.sptribs.caseworker.event.page.IssueDecisionSelectTemplate;
 import uk.gov.hmcts.sptribs.caseworker.event.page.IssueDecisionUploadNotice;
 import uk.gov.hmcts.sptribs.caseworker.util.MessageUtil;
 import uk.gov.hmcts.sptribs.ciccase.model.CaseData;
+import uk.gov.hmcts.sptribs.ciccase.model.CicCase;
 import uk.gov.hmcts.sptribs.ciccase.model.LanguagePreference;
 import uk.gov.hmcts.sptribs.ciccase.model.State;
 import uk.gov.hmcts.sptribs.ciccase.model.UserRole;
@@ -92,7 +93,7 @@ public class CaseWorkerIssueDecision implements CCDConfig<CaseData, State, UserR
     public AboutToStartOrSubmitResponse<CaseData, State> aboutToStart(CaseDetails<CaseData, State> details) {
         var caseData = details.getData();
 
-        caseData.setDecisionSignature("");
+        caseData.getCicCase().setDecisionSignature("");
 
         return AboutToStartOrSubmitResponse.<CaseData, State>builder()
             .data(caseData)
@@ -110,7 +111,8 @@ public class CaseWorkerIssueDecision implements CCDConfig<CaseData, State, UserR
                                         + " to the bottom of the generated decision notice. E.g. 'Tribunal Judge Farrelly'
                     """)
             .pageShowConditions(issueDecisionShowConditions())
-            .mandatory(CaseData::getDecisionSignature)
+                .complex(CaseData::getCicCase)
+            .mandatory(CicCase::getDecisionSignature)
             .done();
     }
 

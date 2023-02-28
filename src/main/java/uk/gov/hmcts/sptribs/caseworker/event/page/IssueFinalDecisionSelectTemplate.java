@@ -23,28 +23,29 @@ public class IssueFinalDecisionSelectTemplate implements CcdPageConfiguration {
     @Override
     public void addTo(PageBuilder pageBuilder) {
         pageBuilder.page("issueFinalDecisionSelectTemplate", this::midEvent)
-            .pageLabel("Select a template")
-            .pageShowConditions(issueFinalDecisionShowConditions())
-            .complex(CaseData::getCaseIssueFinalDecision)
-            .mandatoryWithLabel(CaseIssueFinalDecision::getDecisionTemplate, "Final Decision Templates")
-            .done();
+                .pageLabel("Select a template")
+                .pageShowConditions(issueFinalDecisionShowConditions())
+                .complex(CaseData::getCaseIssueFinalDecision)
+                .mandatoryWithLabel(CaseIssueFinalDecision::getDecisionTemplate, "Final Decision Templates")
+                .done();
     }
 
     public AboutToStartOrSubmitResponse<CaseData, State> midEvent(
-        CaseDetails<CaseData, State> details,
-        CaseDetails<CaseData, State> detailsBefore
+            CaseDetails<CaseData, State> details,
+            CaseDetails<CaseData, State> detailsBefore
     ) {
         CaseData caseData = details.getData();
         DecisionTemplate decision = caseData.getCaseIssueFinalDecision().getDecisionTemplate();
-     //   caseData.setDecisionMainContent(EventUtil.getMainContent(decision));
-        if (null == caseData.getSelectedTemplate()
-            || (null != caseData.getSelectedTemplate() && !caseData.getSelectedTemplate().equalsIgnoreCase(decision.getLabel()))) {
-            caseData.setDecisionMainContent(EventUtil.getMainContent(decision));
-            caseData.setSelectedTemplate(decision.getLabel());
+        //   caseData.setDecisionMainContent(EventUtil.getMainContent(decision));
+        if (null == caseData.getCicCase().getSelectedTemplate()
+                || (null != caseData.getCicCase().getSelectedTemplate()
+                && !caseData.getCicCase().getSelectedTemplate().equalsIgnoreCase(decision.getLabel()))) {
+            caseData.getCicCase().setDecisionMainContent(EventUtil.getMainContent(decision));
+            caseData.getCicCase().setSelectedTemplate(decision.getLabel());
         }
         return AboutToStartOrSubmitResponse.<CaseData, State>builder()
-            .data(caseData)
-            .build();
+                .data(caseData)
+                .build();
     }
 
 }

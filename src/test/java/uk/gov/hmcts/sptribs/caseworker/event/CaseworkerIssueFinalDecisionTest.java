@@ -154,7 +154,8 @@ class CaseworkerIssueFinalDecisionTest {
         AboutToStartOrSubmitResponse<CaseData, State> response = issueFinalDecisionSelectTemplate.midEvent(caseDetails, caseDetails);
 
         //Then
-        Assertions.assertEquals(DocmosisTemplateConstants.ELIGIBILITY_MAIN_CONTENT, response.getData().getDecisionMainContent());
+        Assertions.assertEquals(DocmosisTemplateConstants.ELIGIBILITY_MAIN_CONTENT,
+            response.getData().getCicCase().getDecisionMainContent());
     }
 
 
@@ -173,6 +174,6 @@ class CaseworkerIssueFinalDecisionTest {
 
         //Then
         assertThat(response).isNotNull();
-        assertThat(response.getData().getDecisionSignature()).isEmpty();
+        assertThat(response.getData().getCicCase().getDecisionSignature()).isEmpty();
     }
 }

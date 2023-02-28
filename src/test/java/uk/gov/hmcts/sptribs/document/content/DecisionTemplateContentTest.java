@@ -33,9 +33,12 @@ public class DecisionTemplateContentTest {
     @Test
     public void shouldSuccessfullyApplyDecisionContent() {
         //Given
+        CicCase cicCase = CicCase.builder()
+            .decisionMainContent("Case Closed")
+            .schemeCic(SchemeCic.Year1996)
+            .decisionSignature("John Doe").build();
         CaseData caseData = buildCaseData();
-        caseData.setDecisionSignature("John Doe");
-        caseData.setDecisionMainContent("Case Closed");
+        caseData.setCicCase(cicCase);
         RecordListing listing = RecordListing.builder().hearingDate(LocalDate.now()).hearingTime("11::00").build();
         caseData.setRecordListing(listing);
         HearingSummary summary = HearingSummary.builder()

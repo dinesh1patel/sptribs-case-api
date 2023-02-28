@@ -17,27 +17,28 @@ public class IssueDecisionSelectTemplate implements CcdPageConfiguration {
     @Override
     public void addTo(PageBuilder pageBuilder) {
         pageBuilder.page("issueDecisionSelectTemplate", this::midEvent)
-            .pageLabel("Select a template")
-            .pageShowConditions(issueDecisionShowConditions())
-            .complex(CaseData::getCaseIssueDecision)
-            .mandatory(CaseIssueDecision::getIssueDecisionTemplate)
-            .done();
+                .pageLabel("Select a template")
+                .pageShowConditions(issueDecisionShowConditions())
+                .complex(CaseData::getCaseIssueDecision)
+                .mandatory(CaseIssueDecision::getIssueDecisionTemplate)
+                .done();
     }
 
     public AboutToStartOrSubmitResponse<CaseData, State> midEvent(
-        CaseDetails<CaseData, State> details,
-        CaseDetails<CaseData, State> detailsBefore
+            CaseDetails<CaseData, State> details,
+            CaseDetails<CaseData, State> detailsBefore
     ) {
         CaseData caseData = details.getData();
         DecisionTemplate decision = caseData.getCaseIssueDecision().getIssueDecisionTemplate();
-        if (null == caseData.getSelectedTemplate()
-            || (null != caseData.getSelectedTemplate() && !caseData.getSelectedTemplate().equalsIgnoreCase(decision.getLabel()))) {
-            caseData.setDecisionMainContent(EventUtil.getMainContent(decision));
-            caseData.setSelectedTemplate(decision.getLabel());
+        if (null == caseData.getCicCase().getSelectedTemplate()
+                || (null != caseData.getCicCase().getSelectedTemplate()
+                && !caseData.getCicCase().getSelectedTemplate().equalsIgnoreCase(decision.getLabel()))) {
+            caseData.getCicCase().setDecisionMainContent(EventUtil.getMainContent(decision));
+            caseData.getCicCase().setSelectedTemplate(decision.getLabel());
         }
         return AboutToStartOrSubmitResponse.<CaseData, State>builder()
-            .data(caseData)
-            .build();
+                .data(caseData)
+                .build();
     }
 
 }
