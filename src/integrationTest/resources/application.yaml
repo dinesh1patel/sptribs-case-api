@@ -93,3 +93,5 @@ feature:
     enabled: ${LINK_CASE_FEATURE:false}
   case-flags:
     enabled: ${CASE_FLAGS_FEATURE:false}
+  case-file:
+    enabled: ${CASE_FILE_FEATURE:false}

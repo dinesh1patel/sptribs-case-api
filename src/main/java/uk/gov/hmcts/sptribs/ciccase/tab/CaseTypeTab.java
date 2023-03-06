@@ -1,5 +1,6 @@
 package uk.gov.hmcts.sptribs.ciccase.tab;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
@@ -12,6 +13,9 @@ import static uk.gov.hmcts.sptribs.ciccase.model.UserRole.SUPER_USER;
 
 @Component
 public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
+
+    @Value("${feature.case-file.enabled}")
+    private boolean caseFileEnabled;
 
     @Override
     public void configure(final ConfigBuilder<CaseData, State, UserRole> configBuilder) {
@@ -28,10 +32,15 @@ public class CaseTypeTab implements CCDConfig<CaseData, State, UserRole> {
     }
 
     private void buildCaseFileViewTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
+        if (caseFileEnabled) {
+            doBuildCaseFileViewTab(configBuilder);
+        }
+    }
+
+    private void doBuildCaseFileViewTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         configBuilder.tab("caseFileView", "Case file view")
             .field(CaseData::getCaseFileView1, null, "#ARGUMENT(CaseFileView)");
     }
-
 
     private void buildSummaryTab(ConfigBuilder<CaseData, State, UserRole> configBuilder) {
         configBuilder.tab("summary", "Summary")
