@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.ComponentLauncher;
 import uk.gov.hmcts.ccd.sdk.type.ListValue;
 import uk.gov.hmcts.ccd.sdk.type.YesOrNo;
 import uk.gov.hmcts.sptribs.caseworker.model.CancelHearing;
@@ -206,10 +207,9 @@ public class CaseData {
 
     @CCD(
         label = "Case file view",
-        typeOverride = ComponentLauncher
         access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
     )
-    private ComponentLauncher componentLauncher;
+    private ComponentLauncher caseFileView1;
 
     @CCD(
         label = "Event",
