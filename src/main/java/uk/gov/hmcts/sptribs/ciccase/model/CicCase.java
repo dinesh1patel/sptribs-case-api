@@ -82,7 +82,9 @@ public class CicCase {
 
     @CCD(
         label = "Preview order",
-        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
+        categoryID = "A"
+
     )
     private Document orderTemplateIssued;
 
@@ -146,7 +148,8 @@ public class CicCase {
     private List<ListValue<DateModel>> orderDueDates;
 
     @CCD(
-        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class}
+        access = {DefaultAccess.class, CaseworkerWithCAAAccess.class},
+        categoryID = "A"
     )
     private Document lastSelectedOrder;
 
