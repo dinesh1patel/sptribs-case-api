@@ -15,8 +15,8 @@ public class HearingAttendeesRolePage implements CcdPageConfiguration {
             .pageLabel("Hearing attendees")
             .pageShowConditions(PageShowConditionsUtil.editSummaryShowConditions())
             .complex(CaseData::getHearingSummary)
-            .mandatory(HearingSummary::getHearingAttendeesRole)
-            .mandatory(HearingSummary::getOtherAttendee, "hearingSummaryHearingAttendeesRoleCONTAINS \"other\"")
+            .mandatory(HearingSummary::getRoles)
+            .mandatory(HearingSummary::getOthers, "hearingSummaryRolesCONTAINS \"other\"")
             .done();
     }
 }

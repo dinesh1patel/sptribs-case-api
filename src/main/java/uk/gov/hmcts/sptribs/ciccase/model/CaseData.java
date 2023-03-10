@@ -23,7 +23,7 @@ import uk.gov.hmcts.sptribs.caseworker.model.ContactParties;
 import uk.gov.hmcts.sptribs.caseworker.model.DraftOrderContentCIC;
 import uk.gov.hmcts.sptribs.caseworker.model.FlagLevel;
 import uk.gov.hmcts.sptribs.caseworker.model.HearingSummary;
-import uk.gov.hmcts.sptribs.caseworker.model.RecordListing;
+import uk.gov.hmcts.sptribs.caseworker.model.Listing;
 import uk.gov.hmcts.sptribs.caseworker.model.RemoveCaseStay;
 import uk.gov.hmcts.sptribs.caseworker.model.SecurityClass;
 import uk.gov.hmcts.sptribs.ciccase.model.access.CaseworkerAccess;
@@ -138,7 +138,7 @@ public class CaseData {
     @JsonUnwrapped(prefix = "record")
     @Builder.Default
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})
-    private RecordListing recordListing = new RecordListing();
+    private Listing listing = new Listing();
 
     @JsonUnwrapped(prefix = "caseFlag")
     @CCD(access = {DefaultAccess.class, CaseworkerWithCAAAccess.class})

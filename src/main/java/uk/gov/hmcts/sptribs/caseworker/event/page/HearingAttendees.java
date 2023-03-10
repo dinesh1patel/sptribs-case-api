@@ -19,9 +19,9 @@ public class HearingAttendees implements CcdPageConfiguration {
             .label("LabelHearingAttendees","")
             .pageShowConditions(PageShowConditionsUtil.editSummaryShowConditions())
             .complex(CaseData::getHearingSummary)
-            .mandatory(HearingSummary::getJudge)
-            .mandatory(HearingSummary::getFullPanelHearing)
-            .mandatory(HearingSummary::getPanelMemberList, "hearingSummaryFullPanelHearing = \"Yes\"")
+            .optional(HearingSummary::getJudge)
+            .mandatory(HearingSummary::getIsFullPanel)
+            .mandatory(HearingSummary::getMemberList, "hearingSummaryIsFullPanel = \"Yes\"")
             .done();
     }
 }
