@@ -91,7 +91,30 @@ public class CftLibConfig implements CFTLibConfigurer {
             "caseworker-st_cic-hearing-centre-team-leader",
             "caseworker-st_cic-senior-judge",
             "caseworker-st_cic-judge",
-            "caseworker-st_cic-respondent"
+            "caseworker-st_cic-respondent",
+
+            "case-allocator",
+            "hearing-centre-admin",
+            "hearing-centre-team-leader",
+            "hmcts-admin",
+            "hmcts-ctsc",
+            "hmcts-judiciary",
+            "hmcts-legal-operations",
+            "judge",
+            "medical",
+            "regional-centre-admin",
+            "regional-centre-team-leader",
+            "respondent",
+            "senior-judge",
+            "senior-tribunal-caseworker",
+            "specific-access-approver-admin",
+            "specific-access-approver-judiciary",
+            "specific-access-approver-legal-operations",
+            "specific-access-approver-ctsc",
+            "task-supervisor",
+            "tribunal-caseworker",
+            "hearing-judge",
+            "interloc-judge"
         );
         ResourceLoader resourceLoader = new DefaultResourceLoader();
         var json = IOUtils.toString(resourceLoader.getResource("classpath:cftlib-am-role-assignments.json")

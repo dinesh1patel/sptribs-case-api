@@ -16,6 +16,82 @@ public class CICAccessProfile extends CriminalInjuriesCompensation {
     @Override
     public void configure(final ConfigBuilder<CriminalInjuriesCompensationData, State, UserRole> configBuilder) {
         ConfigBuilderHelper.configureWithMandatoryConfig(configBuilder);
+        configBuilder.caseRoleToAccessProfile(UserRole.CASE_ALLOCATOR)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.CASE_ALLOCATOR.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.HEARING_CENTRE_ADMIN)
+            .accessProfiles("cic-centre-admin")
+            .caseAccessCategories(UserRole.HEARING_CENTRE_ADMIN.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.HEARING_CENTRE_TEAM_LEADER)
+            .accessProfiles("cic-centre-team-leader", "cic-centre-admin")
+            .caseAccessCategories(UserRole.HEARING_CENTRE_TEAM_LEADER.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_ADMIN)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.HMCTS_ADMIN.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_CTSC)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.HMCTS_CTSC.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_JUDICIARY)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.HMCTS_JUDICIARY.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.HMCTS_LEGAL_OPERATIONS)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.HMCTS_LEGAL_OPERATIONS.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.JUDGE)
+            .accessProfiles("cic-judge")
+            .caseAccessCategories(UserRole.JUDGE.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.MEDICAL)
+            .accessProfiles("cic-judge")
+            .caseAccessCategories(UserRole.MEDICAL.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.REGIONAL_CENTRE_ADMIN)
+            .accessProfiles("cic-centre-admin")
+            .caseAccessCategories(UserRole.REGIONAL_CENTRE_ADMIN.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.REGIONAL_CENTRE_TEAM_LEADER)
+            .accessProfiles("cic-centre-team-leader","cic-centre-admin")
+            .caseAccessCategories(UserRole.REGIONAL_CENTRE_TEAM_LEADER.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.RESPONDENT)
+            .accessProfiles("cica-respondent")
+            .caseAccessCategories(UserRole.RESPONDENT.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.SENIOR_JUDGE)
+            .accessProfiles("cic-judge", "cic-senior-judge")
+            .caseAccessCategories(UserRole.SENIOR_JUDGE.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.SENIOR_TRIBUNAL_CASEWORKER)
+            .accessProfiles("cic-senior-caseworker","cic-caseworker")
+            .caseAccessCategories(UserRole.SENIOR_TRIBUNAL_CASEWORKER.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.SPECIFIC_ACCESS_APPROVER_ADMIN)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.SPECIFIC_ACCESS_APPROVER_ADMIN.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.SPECIFIC_ACCESS_APPROVER_JUDICIARY)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.SPECIFIC_ACCESS_APPROVER_JUDICIARY.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.SPECIFIC_ACCESS_APPROVER_LEGAL_OPERATIONS)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.SPECIFIC_ACCESS_APPROVER_LEGAL_OPERATIONS.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.SPECIFIC_ACCESS_APPROVER_CTSC)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.SPECIFIC_ACCESS_APPROVER_CTSC.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.TASK_SUPERVISOR)
+            .accessProfiles("basic")
+            .caseAccessCategories(UserRole.TASK_SUPERVISOR.getCaseTypePermissions())
+            .readonly();
+        configBuilder.caseRoleToAccessProfile(UserRole.TRIBUNAL_CASEWORKER)
+            .accessProfiles("cic-caseworker")
+            .caseAccessCategories(UserRole.TRIBUNAL_CASEWORKER.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.HEARING_JUDGE)
+            .accessProfiles("cic-hearing-judge")
+            .caseAccessCategories(UserRole.HEARING_JUDGE.getCaseTypePermissions());
+        configBuilder.caseRoleToAccessProfile(UserRole.INTERLOC_JUDGE)
+            .accessProfiles("cic-interloc-judge")
+            .caseAccessCategories(UserRole.INTERLOC_JUDGE.getCaseTypePermissions());
 
         /*
         // This block works as intended and to our understanding of setting up AM/IDAM for legacy operation

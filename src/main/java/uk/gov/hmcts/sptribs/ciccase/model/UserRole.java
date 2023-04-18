@@ -31,7 +31,32 @@ public enum UserRole implements HasRole {
     ST_CIC_JUDGE("caseworker-st_cic-judge", "CRU"),
     ST_CIC_RESPONDENT("caseworker-st_cic-respondent", "CRU"),
 
-    CITIZEN_CIC("citizen-sptribs-cic-dss", "C");
+    CITIZEN_CIC("citizen-sptribs-cic-dss", "C"),
+
+    //Access profile matching roles
+    CASE_ALLOCATOR("case-allocator", "R"),
+    HEARING_CENTRE_ADMIN("hearing-centre-admin", "CRU"),
+    HEARING_CENTRE_TEAM_LEADER("hearing-centre-team-leader", "CRU"),
+    HMCTS_ADMIN("hmcts-admin", "R"),
+    HMCTS_CTSC("hmcts-ctsc", "R"),
+    HMCTS_JUDICIARY("hmcts-judiciary", "R"),
+    HMCTS_LEGAL_OPERATIONS("hmcts-legal-operations", "R"),
+    JUDGE("judge", "CRU"),
+    MEDICAL("medical", "CRU"),
+    REGIONAL_CENTRE_ADMIN("regional-centre-admin", "CRU"),
+    REGIONAL_CENTRE_TEAM_LEADER("regional-centre-team-leader", "CRU"),
+    RESPONDENT("respondent", "CRU"),
+    SENIOR_JUDGE("senior-judge", "CRU"),
+    SENIOR_TRIBUNAL_CASEWORKER("senior-tribunal-caseworker", "CRU"),
+    SPECIFIC_ACCESS_APPROVER_ADMIN("specific-access-approver-admin", "R"),
+    SPECIFIC_ACCESS_APPROVER_JUDICIARY("specific-access-approver-judiciary", "R"),
+    SPECIFIC_ACCESS_APPROVER_LEGAL_OPERATIONS("specific-access-approver-legal-operations", "R"),
+    SPECIFIC_ACCESS_APPROVER_CTSC("specific-access-approver-ctsc", "R"),
+    TASK_SUPERVISOR("task-supervisor", "R"),
+    TRIBUNAL_CASEWORKER("tribunal-caseworker", "CRU"),
+    HEARING_JUDGE("hearing-judge", "CRU"),
+    INTERLOC_JUDGE("interloc-judge", "CRU");
+
 
     @JsonValue
     private final String role;
